@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Patient extends Model
+class Patient extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $guard_name = 'web';
+    protected $guard = 'web';
 
     protected $fillable = [
     	'code',
@@ -24,6 +29,11 @@ class Patient extends Model
     public function healthCertifications()
     {
         return $this->hasMany(HealthCertification::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
 
     public function healthInsuranceCard()

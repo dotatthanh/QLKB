@@ -1,0 +1,283 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\000031}}
+body {
+  font-size: 16px;
+  color: #000;
+  font-family: 'Tahoma';
+  line-height: 1.5; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\000038}}
+.bg-header {
+  background: #ebebeb;
+  padding: 10px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000313}}
+.logo {
+  color: #00A551;
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+  background: linear-gradient(to right, #f5821fa8, #fff, #fdff65);
+  padding: 5px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000322}}
+.slogan {
+  color: #00A551;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000330}}
+.menu {
+  background: #00a551;
+  display: inline-block;
+  width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000336}}
+  .menu li {
+    display: inline-block;
+    padding: 0 20px;
+    position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000341}}
+    .menu li a {
+      color: #fff;
+      display: block;
+      padding: 12px 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000346}}
+      .menu li a:hover {
+        color: yellow; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000351}}
+    .menu li ul {
+      display: none;
+      position: absolute; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000356}}
+    .menu li:hover > ul {
+      display: block;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      width: 200px;
+      border: 1px solid #ebebeb;
+      border-radius: 5px;
+      z-index: 999; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000366}}
+      .menu li:hover > ul li {
+        list-style: circle;
+        display: block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000370}}
+        .menu li:hover > ul li:hover {
+          background: #00a551; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000374}}
+        .menu li:hover > ul li a {
+          color: #000; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000377}}
+          .menu li:hover > ul li a:hover {
+            color: yellow; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000387}}
+  .menu .item-booking a {
+    background: #f58220;
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 5px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\0000396}}
+.title {
+  color: #555555;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003105}}
+.item-slider-for {
+  border: 3px solid #00a551;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003111}}
+.slider-nav {
+  margin-top: 20px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003115}}
+.slick-initialized .slick-slide {
+  border: 1px solid #00a551;
+  margin-right: 15px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003120}}
+footer {
+  background: #efefef;
+  padding-top: 20px;
+  margin-top: 30px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003125}}
+  footer .title-footer {
+    color: #00A551; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003129}}
+  footer a {
+    display: inline-block;
+    color: #00A551;
+    font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003136}}
+.coppyright {
+  background: #00a551;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 7px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003145}}
+.bg {
+  background: url("../images/bg.jpg") top center no-repeat; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003149}}
+.title-note {
+  color: #00a551;
+  font-size: 32px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003154}}
+.form-booking {
+  padding: 25px 15px;
+  background: #fff;
+  border-radius: 25px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003160}}
+.btn-booking {
+  color: #fff;
+  background: #00a551;
+  display: block;
+  margin: auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003167}}
+.btn-call {
+  position: fixed;
+  left: 30px;
+  top: 50%;
+  z-index: 99; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003173}}
+  .btn-call span {
+    display: block;
+    font-size: 30px;
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
+    line-height: 54px;
+    text-align: center;
+    color: #fff;
+    background: #0bdb7d;
+    position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003186}}
+    .btn-call span i {
+      -webkit-animation-name: lac;
+      animation-name: lac;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003195}}
+    .btn-call span:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      border: solid 1px #0bdb7d;
+      -webkit-animation-name: zoomin;
+      animation-name: zoomin;
+      -webkit-animation-duration: 1.5s;
+      animation-duration: 1.5s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/Admin\/Desktop\/web\/scss\/style\.scss}line{font-family:\00003211}}
+    .btn-call span:after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      background: #0bdb7d;
+      z-index: -1;
+      -webkit-animation-name: zoomout;
+      animation-name: zoomout;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+      animation-direction: alternate; }
+@keyframes lac {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  10% {
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg); }
+  20% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg); }
+  30% {
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg); }
+  40% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg); }
+  50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); } }
+@-webkit-keyframes lac {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  10% {
+    -webkit-transform: rotate(-25deg); }
+  20% {
+    -webkit-transform: rotate(25deg); }
+  30% {
+    -webkit-transform: rotate(-25deg); }
+  40% {
+    -webkit-transform: rotate(25deg); }
+  50% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+@keyframes zoomin {
+  0% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(2.2);
+    transform: scale(2.2);
+    opacity: .1; } }
+@-webkit-keyframes zoomin {
+  0% {
+    -webkit-transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(2.2);
+    opacity: .1; } }
+@keyframes zoomout {
+  0% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: .3; } }
+@-webkit-keyframes zoomout {
+  0% {
+    -webkit-transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.1);
+    opacity: .3; } }
+
+/*# sourceMappingURL=style.css.map */

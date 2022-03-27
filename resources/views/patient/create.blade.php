@@ -87,8 +87,37 @@
     <script type="text/javascript">
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
-            // format: 'DD-MM-YYYY HH:mm:ss',
             endDate: new Date(),
+        });
+
+
+
+        $(document).ready(function() {
+            $("#show_hide_password a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_hide_password input').attr("type") == "text"){
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass( "fa-eye-slash" );
+                    $('#show_hide_password i').removeClass( "fa-eye" );
+                }else if($('#show_hide_password input').attr("type") == "password"){
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                    $('#show_hide_password i').addClass( "fa-eye" );
+                }
+            });
+
+            $("#show_hide_password_confirmation a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_hide_password_confirmation input').attr("type") == "text"){
+                    $('#show_hide_password_confirmation input').attr('type', 'password');
+                    $('#show_hide_password_confirmation i').addClass( "fa-eye-slash" );
+                    $('#show_hide_password_confirmation i').removeClass( "fa-eye" );
+                }else if($('#show_hide_password_confirmation input').attr("type") == "password"){
+                    $('#show_hide_password_confirmation input').attr('type', 'text');
+                    $('#show_hide_password_confirmation i').removeClass( "fa-eye-slash" );
+                    $('#show_hide_password_confirmation i').addClass( "fa-eye" );
+                }
+            });
         });
     </script>
 @endpush
@@ -99,4 +128,24 @@
     <link href="{{ asset('libs\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('libs\bootstrap-timepicker\css\bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
+
+    <style>
+        .input-group-addon {
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.25;
+            color: #495057;
+            text-align: center;
+            background-color: #e9ecef;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 0.25rem;
+            width: 45px;
+        }
+
+        .input-group-addon a i{
+            color: #495057;
+        }
+    </style>
 @endpush

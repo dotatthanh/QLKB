@@ -46,7 +46,7 @@ class HealthCertificationController extends Controller
     {
         $patients = Patient::all();
         $consulting_rooms = ConsultingRoom::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
 
         $data = [
             'patients' => $patients,
@@ -65,7 +65,6 @@ class HealthCertificationController extends Controller
      */
     public function store(StoreHealthCertificationRequest $request)
     {
-        // dd($request->all());
         $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
 
         $health_certifications = HealthCertification::whereBetween('created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])->get();
@@ -115,7 +114,7 @@ class HealthCertificationController extends Controller
     {
         $patients = Patient::all();
         $consulting_rooms = ConsultingRoom::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
 
         $data = [
             'patients' => $patients,
@@ -137,7 +136,7 @@ class HealthCertificationController extends Controller
     {
         $patients = Patient::all();
         $consulting_rooms = ConsultingRoom::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
 
         $data = [
             'patients' => $patients,
@@ -233,7 +232,7 @@ class HealthCertificationController extends Controller
     {
         $patients = Patient::all();
         $consulting_rooms = ConsultingRoom::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
 
         $data = [
             'patients' => $patients,

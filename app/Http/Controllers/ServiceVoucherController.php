@@ -44,7 +44,7 @@ class ServiceVoucherController extends Controller
     public function create()
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medical_services = MedicalService::all();
 
         $data = [
@@ -104,7 +104,7 @@ class ServiceVoucherController extends Controller
     public function show(ServiceVoucher $serviceVoucher)
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medical_services = MedicalService::all();
 
         $data = [
@@ -126,7 +126,7 @@ class ServiceVoucherController extends Controller
     public function edit(ServiceVoucher $serviceVoucher)
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medical_services = MedicalService::all();
 
         $data = [
@@ -220,7 +220,7 @@ class ServiceVoucherController extends Controller
     public function print(ServiceVoucher $serviceVoucher)
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medical_services = MedicalService::all();
 
         $data = [

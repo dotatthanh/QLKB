@@ -30,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form method="GET" action="{{ route('patients.index') }}">
+                                <form method="GET" action="{{ route('medical_records.index') }}">
                                     <div class="row mb-2">
                                         <div class="col-sm-5">
                                             <div class="search-box mr-2 mb-2 d-inline-block">

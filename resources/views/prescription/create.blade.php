@@ -89,10 +89,16 @@
             format: 'dd-mm-yyyy',
         });
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         function getInsuranceCard(id) {
             if (id){
                 $.ajax({
-                    url: "/health_insurance_cards/"+id+"/get-insurance-card",
+                    url: "/admin/health_insurance_cards/"+id+"/get-insurance-card",
                     type: "POST",
                     success: function (respon) {
                         if (respon) {

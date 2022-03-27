@@ -46,7 +46,7 @@ class PrescriptionController extends Controller
     public function create(Request $request)
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medicines = Medicine::all();
 
         $data = [
@@ -153,7 +153,7 @@ class PrescriptionController extends Controller
     public function edit(Prescription $prescription)
     {
         $patients = Patient::all();
-        $users = User::all();
+        $users = User::role('Bác sĩ')->get();
         $medicines = Medicine::all();
 
         $data = [

@@ -39,13 +39,25 @@
         @if ($routeType == 'create')
             <div class="form-group">
                 <label for="userpassword">Mật khẩu <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" id="userpassword" placeholder="Nhập mật khẩu" autocomplete="new-password" name="password">
+                
+                <div class="input-group" id="show_hide_password">
+                    <input type="password" class="form-control" id="userpassword" placeholder="Nhập mật khẩu" autocomplete="new-password" name="password">
+                    <div class="input-group-addon">
+                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                    </div>
+                </div>  
                 {!! $errors->first('password', '<span class="error">:message</span>') !!}
             </div>
 
             <div class="form-group">
                 <label for="password_confirmation">Xác nhận mật khẩu <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" id="password_confirmation" placeholder="Nhập xác nhận mật khẩu" name="password_confirmation">        
+
+                <div class="input-group" id="show_hide_password_confirmation">
+                    <input type="password" class="form-control" id="password_confirmation" placeholder="Nhập xác nhận mật khẩu" name="password_confirmation">
+                    <div class="input-group-addon">
+                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                    </div>
+                </div>        
             </div>
         @endif
     </div>
@@ -65,7 +77,7 @@
 
         <div class="form-group">
             <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
-            <input id="phone" name="phone" type="number" class="form-control" placeholder="Số điện thoại" value="{{ old('phone', $data_edit->phone ?? '') }}">
+            <input id="phone" name="phone" type="number" min="0" class="form-control" placeholder="Số điện thoại" value="{{ old('phone', $data_edit->phone ?? '') }}">
             {!! $errors->first('phone', '<span class="error">:message</span>') !!}
         </div>
 

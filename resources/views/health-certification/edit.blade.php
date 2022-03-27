@@ -76,14 +76,22 @@
     <!-- form advanced init -->
     <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
     <script type="text/javascript">
+        let date = new Date();
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
+            startDate: new Date(date),
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
 
         function getInsuranceCard(id) {
             if (id){
                 $.ajax({
-                    url: "/health_insurance_cards/"+id+"/get-insurance-card",
+                    url: "/admin/health_insurance_cards/"+id+"/get-insurance-card",
                     type: "POST",
                     success: function (respon) {
                         if (respon) {

@@ -22,6 +22,15 @@
                     </a>
                 </li>
 
+                @can('Xem danh sách đặt lịch')
+                    <li>
+                        <a href="{{ route('bookings.index') }}" class=" waves-effect">
+                            <i class="bx bx-calendar"></i>
+                            <span>Đặt lịch</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('Xem danh sách giấy khám bệnh')
                     <li>
                         <a href="{{ route('health_certifications.index') }}" class=" waves-effect">

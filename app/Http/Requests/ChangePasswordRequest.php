@@ -41,7 +41,6 @@ class ChangePasswordRequest extends FormRequest
             'password_confirmation.string' => 'Xác nhận mật khẩu không được chứa các ký tự đặc biệt.',
             'password.required' => 'Mật khẩu mới là trường bắt buộc.',
             'password.string' => 'Mật khẩu mới không được chứa các ký tự đặc biệt.',
-            // 'password.confirmed' => 'Xác nhận mật khẩu mới không khớp.',
             'password.min' => 'Mật khẩu mới phải ít nhất 8 ký tự.',
             'password_old.min' => 'Mật khẩu cũ phải ít nhất 8 ký tự.',
             'password_confirmation.min' => 'Xác nhận mật khẩu phải ít nhất 8 ký tự.',

@@ -59,14 +59,9 @@ class MedicalRecordController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
-        // $consulting_rooms = ConsultingRoom::all();
-        // $users = User::all();
 
         $data = [
             'patient' => $patient,
-            // 'consulting_rooms' => $consulting_rooms,
-            // 'users' => $users,
-            // 'data_edit' => $healthCertification,
         ];
 
         return view('medical-record.show', $data);

@@ -50,7 +50,7 @@
                     <label for="date">Ngày khám <span class="text-danger">*</span></label>
                     <div class="docs-datepicker">
                         <div class="input-group">
-                            <input type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày sinh" autocomplete="off" value="{{ old('date', isset($data_edit->date) ? date('d-m-Y', strtotime($data_edit->date)) : '') }}">
+                            <input type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày khám" autocomplete="off" value="{{ old('date', isset($data_edit->date) ? date('d-m-Y', strtotime($data_edit->date)) : '') }}">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>

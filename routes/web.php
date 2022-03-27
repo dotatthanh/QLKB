@@ -18,6 +18,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CashierHealthCertificationController;
 use App\Http\Controllers\CashierServiceVoucherController;
 use App\Http\Controllers\MedicalRecordController;
+use App\Http\Controllers\WebController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +32,46 @@ use App\Http\Controllers\MedicalRecordController;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('login');
-// });
+Route::get('/', [WebController::class, 'index'])->name('home');
+Route::get('/dat-lich-kham', [WebController::class, 'bookingExamination'])->name('web.booking-examination');
+Route::post('/dat-lich-kham', [WebController::class, 'booking'])->name('web.booking');
 
+
+Route::middleware(['website'])->group(function () {
+	Route::post('/dang-xuat', [WebController::class, 'logout'])->name('web.logout');
+	Route::get('/thong-tin-ca-nhan', [WebController::class, 'profile'])->name('web.profile');
+	Route::get('/cap-nhat-thong-tin-ca-nhan', [WebController::class, 'changeProfile'])->name('web.change-profile');
+	Route::post('/cap-nhat-thong-tin-ca-nhan/{id}', [WebController::class, 'postChangeProfile'])->name('web.post-change-profile');
+	Route::get('/doi-mat-khau', [WebController::class, 'changePassword'])->name('web.change-password');
+	Route::post('/doi-mat-khau/{id}', [WebController::class, 'postChangePassword'])->name('web.post-change-password');
+	Route::get('/danh-sach-don-thuoc', [WebController::class, 'prescription'])->name('web.prescription');
+	Route::get('/chi-tiet-don-thuoc/{id}', [WebController::class, 'prescriptionDetail'])->name('web.prescription-detail');
+	Route::get('/thong-tin-dat-lich', [WebController::class, 'infoBooking'])->name('web.info-booking');
+	Route::post('/huy-lich-kham/{id}', [WebController::class, 'cancelAppointment'])->name('web.cancel-appointment');
+	Route::get('/ho-so-benh-an', [WebController::class, 'medicalRecord'])->name('web.medical-record');
+});
+
+Route::middleware(['guest_website'])->group(function () {
+	Route::get('/dang-nhap', [WebController::class, 'login'])->name('web.login');
+	Route::post('/dang-nhap', [WebController::class, 'postLogin'])->name('web.post-login');
+	Route::get('/dang-ky', [WebController::class, 'register'])->name('web.register');
+	Route::post('/dang-ky', [WebController::class, 'postRegister'])->name('web.post-register');
+});
+
+
+
+
+
+
+
+// Admin
 Route::prefix('admin')->group(function () {
 	Route::middleware(['auth'])->group(function () {
+		Route::resource('bookings', BookingController::class);
+		Route::post('/bookings/approve-booking/{id}', [BookingController::class, 'approveBooking'])->name('bookings.approve-booking');
+		Route::post('/bookings/cancel-appointment/{id}', [BookingController::class, 'cancelAppointment'])->name('bookings.cancel-appointment');
+
+
 		Route::resource('medical_records', MedicalRecordController::class);
 		Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 		

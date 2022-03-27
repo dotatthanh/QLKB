@@ -41,7 +41,7 @@
                                             </div>
 
                                             <div class="col-sm-9">
-                                                <label class="font-weight-bold">{{ $patient->name }}</label>
+                                                <label class="font-weight-bold">{{ $patient->code }}</label>
                                             </div>
 
                                             <div class="col-sm-3">

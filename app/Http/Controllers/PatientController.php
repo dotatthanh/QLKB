@@ -179,6 +179,9 @@ class PatientController extends Controller
             elseif ($patient->prescriptions->count() > 0) {
                 return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có đơn thuốc.');
             }
+            elseif ($patient->bookings->count() > 0) {
+                return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có danh sách lịch khám.');
+            }
 
             Patient::destroy($patient->id);
             
