@@ -53,7 +53,7 @@ class RoleController extends Controller
 
             $create = Role::create([
                 'name' => $request->name,
-                'guard_name' => 'web',
+                'guard_name' => 'admin',
             ]);
 
             DB::commit();

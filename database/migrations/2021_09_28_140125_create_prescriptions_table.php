@@ -20,8 +20,8 @@ class CreatePrescriptionsTable extends Migration
             $table->integer('health_certification_id')->nullable();
             $table->integer('user_id');
             $table->integer('total_money');
-            $table->integer('is_health_insurance_card');
             $table->string('status');
+            $table->date('date_payment')->nullable();
             $table->timestamps();
         });
     }

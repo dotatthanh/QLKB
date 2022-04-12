@@ -58,20 +58,6 @@
                                     </div>
 
                                     <div class="col-sm-2">
-                                        <label>Thẻ BHYT :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <div>
-                                            @if ($data_edit->is_health_insurance_card)
-                                                <label>Có</label>
-                                            @else
-                                                <label>Không</label>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-2">
                                         <label>Tên bác sĩ :</label>
                                     </div>
 
@@ -120,8 +106,10 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        @if ($data_edit->payment_status)
+                                        @if ($data_edit->payment_status == 1)
                                             <label class="text-success">Đã thanh toán</label>
+                                        @elseif ($data_edit->payment_status == 2)
+                                            <label class="text-success">Đã hoàn tiền</label>
                                         @else
                                             <label class="text-warning">Chưa thanh toán</label>
                                         @endif

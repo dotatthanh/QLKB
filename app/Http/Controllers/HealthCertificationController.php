@@ -65,8 +65,6 @@ class HealthCertificationController extends Controller
      */
     public function store(StoreHealthCertificationRequest $request)
     {
-        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
-
         $health_certifications = HealthCertification::whereBetween('created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])->get();
         if ($health_certifications->count() == 0) {
             $number = 1;
@@ -89,7 +87,6 @@ class HealthCertificationController extends Controller
                 'status' => 0,
                 'number' => $number,
                 'total_money' => $request->total_money,
-                'is_health_insurance_card' => $is_health_insurance_card,
             ]);
 
             $create->update([
@@ -188,6 +185,10 @@ class HealthCertificationController extends Controller
     {
         try {
             DB::beginTransaction();
+
+            if ($healthCertification->serviceVouchers->count() > 0) {
+                return redirect()->back()->with('alert-error','Xóa giấy khám thất bại! Giấy khám bệnh đang có phiếu dịch vụ.');
+            }
 
             HealthCertification::destroy($healthCertification->id);
             

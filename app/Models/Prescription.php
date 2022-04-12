@@ -15,8 +15,8 @@ class Prescription extends Model
 	    'user_id',
 	    'total_money',
 	    'status',
-        'is_health_insurance_card',
         'health_certification_id',
+        'date_payment'
     ];
 
     public function patient()

@@ -29,6 +29,7 @@ class RoleAndPermissionSeeder extends Seeder
         $create_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Thêm giấy khám bệnh']);
         $edit_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa giấy khám bệnh']);
         $delete_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Xóa giấy khám bệnh']);
+        $create_service_voucher_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Tạo phiếu dịch vụ']);
         $conclude_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Kết luận khám giấy khám bệnh']);
         $print_health_certification = Permission::create(['guard_name' => 'admin','name' => 'In giấy khám bệnh']);
         $list_prescription = Permission::create(['guard_name' => 'admin','name' => 'Kê đơn thuốc']);
@@ -39,6 +40,7 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($create_health_certification);
         $admin->givePermissionTo($edit_health_certification);
         $admin->givePermissionTo($delete_health_certification);
+        $admin->givePermissionTo($create_service_voucher_health_certification);
         $admin->givePermissionTo($conclude_health_certification);
         $admin->givePermissionTo($print_health_certification);
         $admin->givePermissionTo($list_prescription);
@@ -127,16 +129,6 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($edit_patient);
         $admin->givePermissionTo($delete_patient);
 
-        $view_health_insurance_card = Permission::create(['guard_name' => 'admin','name' => 'Xem danh sách thẻ BHYT']);
-        $create_health_insurance_card = Permission::create(['guard_name' => 'admin','name' => 'Thêm thẻ BHYT']);
-        $edit_health_insurance_card = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa thẻ BHYT']);
-        $delete_health_insurance_card = Permission::create(['guard_name' => 'admin','name' => 'Xóa thẻ BHYT']);
-
-        $admin->givePermissionTo($view_health_insurance_card);
-        $admin->givePermissionTo($create_health_insurance_card);
-        $admin->givePermissionTo($edit_health_insurance_card);
-        $admin->givePermissionTo($delete_health_insurance_card);
-
         $view_user = Permission::create(['guard_name' => 'admin','name' => 'Xem danh sách tài khoản']);
         $create_user = Permission::create(['guard_name' => 'admin','name' => 'Thêm tài khoản']);
         $edit_user = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa tài khoản']);
@@ -166,14 +158,26 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($edit_permission);
 
         $view_cashier_health_certificate = Permission::create(['guard_name' => 'admin','name' => 'Xem thu ngân giấy khám bệnh']);
-        $view_cashier_service_voucher = Permission::create(['guard_name' => 'admin','name' => 'Xem thu ngân phiếu dịch vụ']);
         $confirm_payment_health_certificate = Permission::create(['guard_name' => 'admin','name' => 'Xác nhận thanh toán giấy khám bệnh']);
+        $refund_health_certificate = Permission::create(['guard_name' => 'admin','name' => 'Hoàn tiền giấy khám bệnh']);
+        $view_cashier_service_voucher = Permission::create(['guard_name' => 'admin','name' => 'Xem thu ngân phiếu dịch vụ']);
         $confirm_payment_service_voucher = Permission::create(['guard_name' => 'admin','name' => 'Xác nhận thanh toán phiếu dịch vụ']);
+        $refund_health_service_voucher = Permission::create(['guard_name' => 'admin','name' => 'Hoàn tiền phiếu dịch vụ']);
+        $view_cashier_prescription = Permission::create(['guard_name' => 'admin','name' => 'Xem thu ngân đơn thuốc']);
+        $confirm_payment_prescription = Permission::create(['guard_name' => 'admin','name' => 'Xác nhận thanh toán đơn thuốc']);
+        $refund_health_prescription = Permission::create(['guard_name' => 'admin','name' => 'Hoàn tiền đơn thuốc']);
+        $view_revenue = Permission::create(['guard_name' => 'admin','name' => 'Xem doanh thu']);
 
         $admin->givePermissionTo($view_cashier_health_certificate);
         $admin->givePermissionTo($view_cashier_service_voucher);
+        $admin->givePermissionTo($view_cashier_prescription);
         $admin->givePermissionTo($confirm_payment_health_certificate);
         $admin->givePermissionTo($confirm_payment_service_voucher);
+        $admin->givePermissionTo($confirm_payment_prescription);
+        $admin->givePermissionTo($refund_health_certificate);
+        $admin->givePermissionTo($refund_health_service_voucher);
+        $admin->givePermissionTo($refund_health_prescription);
+        $admin->givePermissionTo($view_revenue);
 
         $view_booking = Permission::create(['guard_name' => 'admin','name' => 'Xem danh sách đặt lịch']);
         $approve_booking = Permission::create(['guard_name' => 'admin','name' => 'Duyệt lịch']);

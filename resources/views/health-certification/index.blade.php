@@ -96,9 +96,13 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($health_certification->payment_status)
+                                                        @if ($health_certification->payment_status == 1)
                                                             <label class="btn btn-success waves-effect waves-light">
                                                                 <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã thanh toán
+                                                            </label>
+                                                        @elseif ($health_certification->payment_status == 2)
+                                                            <label class="btn btn-success waves-effect waves-light">
+                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã hoàn tiền
                                                             </label>
                                                         @else
                                                             <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa thanh toán</label>
@@ -125,7 +129,14 @@
                                                                         <a href="{{ route('health_certifications.conclude', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="Kết luận khám"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>
                                                                     @endcan
+
+                                                                    {{-- @can('Tạo phiếu dịch vụ') --}}
+                                                                    <li class="list-inline-item px">
+                                                                        <a href="{{ route('service_vouchers.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Tạo phiếu dịch vụ"><i class="mdi mdi-plus text-success"></i></a>
+                                                                    </li>
+                                                                    {{-- @endcan --}}
                                                                 @endif
+
 
                                                                 @can('Chỉnh sửa giấy khám bệnh')
                                                                 <li class="list-inline-item px">
@@ -139,7 +150,7 @@
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         
-                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
+                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white" onclick="return confirm('Bạn có chắc chắn muốn xoá?')"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                     </form>
                                                                 </li>
                                                                 @endcan

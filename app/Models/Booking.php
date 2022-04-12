@@ -13,6 +13,7 @@ class Booking extends Model
     	'content',
     	'email',
     	'patient_id',
+        'consulting_room_id',
     	'phone',
     	'name',
     	'time',
@@ -23,5 +24,10 @@ class Booking extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function consultingRoom()
+    {
+        return $this->belongsTo(ConsultingRoom::class);
     }
 }

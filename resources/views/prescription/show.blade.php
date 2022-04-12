@@ -88,8 +88,10 @@
                                     </div>
 
                                     <div class="col-sm-10">
-                                        @if ($prescription->status)
+                                        @if ($prescription->status == 1)
                                             <label class="text-success">Đã mua</label>
+                                        @elseif ($prescription->status == 2)
+                                            <label class="text-success">Đã hoàn tiền</label>
                                         @else
                                             <label class="text-warning">Chưa mua</label>
                                         @endif

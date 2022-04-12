@@ -46,18 +46,10 @@
 
                                         <div class="col-sm-6">
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
                                                         <label for="patient_id">Tên bệnh nhân</label>
                                                         <input disabled id="patient_id" name="patient_id" type="text" class="form-control" value="{{ $data_edit->patient->name }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label for="patient_id" class="mt-2">Thẻ BHYT</label>
-                                                    <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled {{ $data_edit->is_health_insurance_card ? 'checked' : '' }}>
-                                                        <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
                                                     </div>
                                                 </div>
 

@@ -63,22 +63,6 @@
                                     <label class="font-weight-bold">{{ auth()->guard('web')->user()->address }}</label>
                                 </div>
 
-
-                                <div class="col-sm-4">
-                                    <label>Thẻ BHYT :</label>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
-                                        @if (auth()->guard('web')->user()->is_health_insurance_card)
-                                            <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
-                                            <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                        @else
-                                            <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
-                                            <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                        @endif
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -144,22 +128,6 @@
                         </div>
 
                         <div class="col-sm-2">
-                            <label>Thẻ BHYT :</label>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
-                                @if ($healthCertification->is_health_insurance_card)
-                                    <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
-                                    <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                @else
-                                    <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
-                                    <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="col-sm-2">
                             <label>Tên bác sĩ :</label>
                         </div>
 
@@ -207,7 +175,7 @@
                             <label>Thanh toán :</label>
                         </div>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                             @if ($healthCertification->payment_status)
                                 <label class="text-success">Đã thanh toán</label>
                             @else

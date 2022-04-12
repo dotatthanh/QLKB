@@ -81,9 +81,13 @@
                                                     </td>
                                                     <td>{{ number_format($prescription->total_money, 0, ',', '.') }}</td>
                                                     <td>
-                                                        @if ($prescription->status)
+                                                        @if ($prescription->status == 1)
                                                             <label class="btn btn-success waves-effect waves-light">
-                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Hoàn thành
+                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã mua
+                                                            </label>
+                                                        @elseif ($prescription->status == 2)
+                                                            <label class="btn btn-success waves-effect waves-light">
+                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã hoàn tiền
                                                             </label>
                                                         @else
                                                             <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa mua</label>
@@ -98,16 +102,6 @@
                                                             @endcan
 
                                                             @if ($prescription->status == 0)
-                                                                @can('Xác nhận thanh toán đơn thuốc')
-                                                                <li class="list-inline-item px">
-                                                                    <form method="post" action="{{ route('prescriptions.confirm-payment', $prescription->id) }}">
-                                                                        @csrf
-                                                                        
-                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xác nhận thanh toán" class="border-0 bg-white"><i class="bx bxs-calendar-check text-success"></i></button>
-                                                                    </form>
-                                                                </li>
-                                                                @endcan
-
                                                                 @can('Chỉnh sửa đơn thuốc')
                                                                 <li class="list-inline-item px">
                                                                     <a href="{{ route('prescriptions.edit', $prescription->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
@@ -120,7 +114,7 @@
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         
-                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
+                                                                        <button onclick="return confirm('Bạn có chắc chắn muốn xoá?')" type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                     </form>
                                                                 </li>
                                                                 @endcan

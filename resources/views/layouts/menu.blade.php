@@ -103,15 +103,6 @@
                 </li>
                 @endcan
 
-                @can('Xem danh sách thẻ BHYT')
-                <li>
-                    <a href="{{ route('health_insurance_cards.index') }}" class=" waves-effect">
-                        <i class="bx bx-id-card"></i>
-                        <span>Thẻ BHYT</span>
-                    </a>
-                </li>
-                @endcan
-
                 @can('Xem thu ngân giấy khám bệnh', 'Xem thu ngân phiếu dịch vụ')
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
@@ -124,6 +115,12 @@
                         @endcan
                         @can('Xem thu ngân phiếu dịch vụ')
                         <li><a href="{{ route('cashier_service_vouchers.index') }}">Phiếu dịch vụ</a></li>
+                        @endcan
+                        @can('Xem thu ngân đơn thuốc')
+                        <li><a href="{{ route('cashier_prescriptions.index') }}">Đơn thuốc</a></li>
+                        @endcan
+                        @can('Xem doanh thu')
+                        <li><a href="{{ route('revenues.index') }}">Doanh thu</a></li>
                         @endcan
                     </ul>
                 </li>

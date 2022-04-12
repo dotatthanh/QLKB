@@ -75,20 +75,6 @@
                                     </div>
 
                                     <div class="col-sm-2">
-                                        <label>Thẻ BHYT :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <div>
-                                            @if ($data_edit->is_health_insurance_card)
-                                                <label>Có</label>
-                                            @else
-                                                <label>Không</label>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-2">
                                         <label>Tên bác sĩ :</label>
                                     </div>
 
@@ -136,9 +122,11 @@
                                         <label>Thanh toán :</label>
                                     </div>
 
-                                    <div class="col-sm-10">
-                                        @if ($data_edit->payment_status)
+                                    <div class="col-sm-4">
+                                        @if ($data_edit->payment_status == 1)
                                             <label class="text-success">Đã thanh toán</label>
+                                        @elseif ($data_edit->payment_status == 2)
+                                            <label class="text-success">Đã hoàn tiền</label>
                                         @else
                                             <label class="text-warning">Chưa thanh toán</label>
                                         @endif
@@ -262,15 +250,155 @@
                             @endif
                         @endif
 
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="{{ route('health_certifications.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <!-- end row -->
+
+                @if ($data_edit->serviceVouchers->count() > 0)
+                    @foreach ($data_edit->serviceVouchers as $serviceVoucher)
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h4 class="card-title">Thông tin khám dịch vụ: {{ $serviceVoucher->medicalService->name }}</h4>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <label>Mã phiếu dịch vụ :</label>
+                                            </div>
+
+                                            <div class="col-sm-10">
+                                                <label>{{ $serviceVoucher->code }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Tên bệnh nhân :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="font-weight-bold">{{ $serviceVoucher->patient->name }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Dịch vụ khám :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="font-weight-bold">{{ $serviceVoucher->medicalService->name }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Tên bác sĩ :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="font-weight-bold">{{ $serviceVoucher->user->name }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Ngày bắt đầu :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="font-weight-bold">{{ date("d-m-Y", strtotime($serviceVoucher->start_date)) }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Ngày kết thúc :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="font-weight-bold">{{ date("d-m-Y", strtotime($serviceVoucher->end_date)) }}</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Trạng thái :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                @if ($serviceVoucher->status)
+                                                    <label class="text-success">Đã khám</label>
+                                                @else
+                                                    <label class="text-warning">Chưa khám</label>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Giá :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label class="text-danger font-weight-bold">{{ number_format($serviceVoucher->total_money, 0, ',', '.') }} VNĐ</label>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label>Thanh toán :</label>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                @if ($serviceVoucher->payment_status == 1)
+                                                    <label class="text-success">Đã thanh toán</label>
+                                                @elseif ($serviceVoucher->payment_status == 2)
+                                                    <label class="text-success">Đã hoàn tiền</label>
+                                                @else
+                                                    <label class="text-warning">Chưa thanh toán</label>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($serviceVoucher->serviceVoucherDetails->count())      
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title mb-3">Kết quả</h4>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label>Chi tiết khám :</label>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-centered table-nowrap">
+                                                            <thead class="thead-light">
+                                                                <tr>
+                                                                    <th class="text-center" width="70px">STT</th>
+                                                                    <th>Ngày khám</th>
+                                                                    <th>Kết quả</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @php ($stt = 1)
+                                                                @foreach ($serviceVoucher->serviceVoucherDetails as $service_voucher_detail)
+                                                                    <tr>
+                                                                        <td class="text-center">{{ $stt++ }}</td>
+                                                                        <td>{{ date("d-m-Y", strtotime($service_voucher_detail->date)) }}</td>
+                                                                        <td>
+                                                                            {!! $service_voucher_detail->result !!}
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                @endif
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <a href="{{ route('health_certifications.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
 
             </div> <!-- container-fluid -->
         </div>

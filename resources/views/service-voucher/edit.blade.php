@@ -91,44 +91,11 @@
     <script src="{{ asset('js\pages\form-editor.init.js') }}"></script>
 
     <script type="text/javascript">
+        let date = new Date();
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
+            startDate: new Date(date),
         });
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function getInsuranceCard(id) {
-            if (id){
-                $.ajax({
-                    url: "/admin/health_insurance_cards/"+id+"/get-insurance-card",
-                    type: "POST",
-                    success: function (respon) {
-                        if (respon) {
-                            $(`#check_insurance_card`).prop('checked', true);
-                            $(`#is_health_insurance_card`).prop('checked', true);
-                            $(`#total_money`).val(0).prop('readonly', true);
-                        }
-                        else {
-                            $(`#check_insurance_card`).prop('checked', false);
-                            $(`#is_health_insurance_card`).prop('checked', false);
-                            $(`#total_money`).prop('readonly', false);
-                        }
-                    },
-                    errors: function () {
-                        alert('Lỗi server!!!');
-                    }
-                });
-            }
-            else {
-                $(`#check_insurance_card`).prop('checked', false);
-                $(`#is_health_insurance_card`).prop('checked', false);
-                $(`#total_money`).prop('readonly', false);
-            }
-        }
     </script>
 @endpush
 

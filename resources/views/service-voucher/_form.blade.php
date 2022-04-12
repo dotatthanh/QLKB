@@ -4,13 +4,18 @@
         <h4 class="card-title">Thông tin cơ bản</h4>
         <p class="card-title-desc">Điền tất cả thông tin bên dưới</p>
         @csrf
+
+        @if ($request->health_certification_id)
+            <input type="text" name="health_certification_id" hidden value="{{ $request->health_certification_id }}">
+        @endif
+
         <div class="row">
             <div class="col-sm-6">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <label for="patient_id">Tên bệnh nhân <span class="text-danger">*</span></label>
-                            <select class="form-control select2" name="patient_id" onchange="getInsuranceCard($(this).val())">
+                            <select class="form-control select2" name="patient_id">
                                 <option value="">Chọn bệnh nhân</option>
                                 @foreach ($patients as $patient)
                                     <option value="{{ $patient->id }}" {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->name }}</option>
@@ -19,15 +24,6 @@
                             {!! $errors->first('patient_id', '<span class="error">:message</span>') !!}
                         </div>
 
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label for="patient_id" class="mt-2">Thẻ BHYT</label>
-                        <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
-                            <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled {{ isset($data_edit->patient->healthInsuranceCard) && $data_edit->patient->healthInsuranceCard ? 'checked' : '' }}>
-                            <input type="checkbox" hidden id="is_health_insurance_card" name="is_health_insurance_card" {{ isset($data_edit->patient->healthInsuranceCard) && $data_edit->patient->healthInsuranceCard ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                        </div>
                     </div>
 
                     <div class="col-sm-12">

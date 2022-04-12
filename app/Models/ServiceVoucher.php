@@ -13,13 +13,14 @@ class ServiceVoucher extends Model
     	'code',
     	'patient_id',
     	'medical_service_id',
-        'is_health_insurance_card',
     	'user_id',
     	'start_date',
     	'end_date',
     	'total_money',
     	'status',
-        'payment_status'
+        'payment_status',
+        'health_certification_id',
+        'date_payment'
     ];
 
     public function patient()
@@ -40,5 +41,10 @@ class ServiceVoucher extends Model
     public function serviceVoucherDetails()
     {
         return $this->hasMany(ServiceVoucherDetail::class);
+    }
+
+    public function healthCertification()
+    {
+        return $this->belongsTo(HealthCertification::class);
     }
 }

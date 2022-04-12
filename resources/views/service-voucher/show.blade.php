@@ -58,22 +58,6 @@
                                     </div>
 
                                     <div class="col-sm-2">
-                                        <label>Thẻ BHYT :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
-                                            @if ($data_edit->is_health_insurance_card)
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                            @else
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-2">
                                         <label>Tên bác sĩ :</label>
                                     </div>
 
@@ -122,8 +106,10 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        @if ($data_edit->payment_status)
+                                        @if ($data_edit->payment_status == 1)
                                             <label class="text-success">Đã thanh toán</label>
+                                        @elseif ($data_edit->payment_status == 2)
+                                            <label class="text-success">Đã hoàn tiền</label>
                                         @else
                                             <label class="text-warning">Chưa thanh toán</label>
                                         @endif

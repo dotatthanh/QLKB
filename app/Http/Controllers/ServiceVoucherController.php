@@ -41,7 +41,7 @@ class ServiceVoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $patients = Patient::all();
         $users = User::role('Bác sĩ')->get();
@@ -51,6 +51,7 @@ class ServiceVoucherController extends Controller
             'medical_services' => $medical_services,
             'patients' => $patients,
             'users' => $users,
+            'request' => $request,
         ];
 
         return view('service-voucher.create', $data);
@@ -64,10 +65,9 @@ class ServiceVoucherController extends Controller
      */
     public function store(StoreServiceVoucherRequest $request)
     {
-        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
-
         try {
             DB::beginTransaction();
+            $health_certification_id = $request->health_certification_id ? $request->health_certification_id : null;
 
             $medical_service = MedicalService::findOrFail($request->medical_service_id);
 
@@ -80,7 +80,7 @@ class ServiceVoucherController extends Controller
                 'end_date' => date("Y-m-d", strtotime($request->end_date)),
                 'total_money' => $medical_service->price,
                 'status' => 0,
-                'is_health_insurance_card' => $is_health_insurance_card,
+                'health_certification_id' => $health_certification_id,
             ]);
 
             $create->update([
@@ -148,8 +148,6 @@ class ServiceVoucherController extends Controller
      */
     public function update(StoreServiceVoucherRequest $request, ServiceVoucher $serviceVoucher)
     {
-        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
-
         try {
             DB::beginTransaction();
 
@@ -162,7 +160,6 @@ class ServiceVoucherController extends Controller
                 'start_date' => date("Y-m-d", strtotime($request->start_date)),
                 'end_date' => date("Y-m-d", strtotime($request->end_date)),
                 'total_money' => $medical_service->price,
-                'is_health_insurance_card' => $is_health_insurance_card,
             ]);
 
             DB::commit();

@@ -22,9 +22,9 @@ class HealthCertification extends Model
     	'suggestion',
     	'number',
     	'total_money',
-        'is_health_insurance_card',
         'date',
         'time',
+        'date_payment'
     ];
 
     public function patient()
@@ -45,5 +45,10 @@ class HealthCertification extends Model
     public function prescription()
     {
         return $this->hasOne(Prescription::class);
+    }
+
+    public function serviceVouchers()
+    {
+        return $this->hasMany(ServiceVoucher::class);
     }
 }

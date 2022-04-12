@@ -86,7 +86,7 @@
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         
-                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
+                                                                        <button onclick="return confirm('Bạn có chắc chắn muốn xoá?')" type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                     </form>
                                                                 </li>
                                                                 @endcan

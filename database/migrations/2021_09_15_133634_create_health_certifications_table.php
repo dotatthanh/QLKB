@@ -26,9 +26,9 @@ class CreateHealthCertificationsTable extends Migration
             $table->string('conclude')->nullable();
             $table->string('treatment_guide')->nullable();
             $table->string('suggestion')->nullable();
+            $table->date('date_payment')->nullable();
             $table->integer('number');
             $table->integer('total_money');
-            $table->integer('is_health_insurance_card');
             $table->date('date');
             $table->time('time');
             $table->timestamps();

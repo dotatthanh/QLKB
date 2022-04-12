@@ -56,6 +56,7 @@
                                                 <th>Số điện thoại</th>
                                                 <th>Email</th>
                                                 <th>Triệu chứng hoặc yêu cầu</th>
+                                                <th>Phòng khám</th>
                                                 <th>Ngày khám</th>
                                                 <th>Giờ khám</th>
                                                 <th>Trạng thái</th>
@@ -71,6 +72,7 @@
                                                     <td>{{ $booking->phone }}</td>
                                                     <td>{{ $booking->email }}</td>
                                                     <td>{{ $booking->content }}</td>
+                                                    <td>{{ $booking->consultingRoom->name }}</td>
                                                     <td>{{ date("d-m-Y", strtotime($booking->date)) }}</td>
                                                     <td>{{ date("H:i", strtotime($booking->time)) }}</td>
                                                     <td>

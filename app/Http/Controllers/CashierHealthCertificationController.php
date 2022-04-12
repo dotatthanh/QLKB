@@ -105,6 +105,7 @@ class CashierHealthCertificationController extends Controller
             
             HealthCertification::findOrFail($id)->update([
                 'payment_status' => 1,
+                'date_payment' => date('Y-m-d'),
             ]);
             
             DB::commit();
@@ -112,6 +113,23 @@ class CashierHealthCertificationController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->with('alert-error','Xác nhận thanh toán thất bại!');
+        }
+    }
+
+    public function refund(Request $request, $id)
+    {
+        try {
+            DB::beginTransaction();
+            
+            HealthCertification::findOrFail($id)->update([
+                'payment_status' => 2,
+            ]);
+            
+            DB::commit();
+            return redirect()->route('cashier_health_certifications.index')->with('alert-success','Hoàn tiền thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Hoàn tiền thất bại!');
         }
     }
 }

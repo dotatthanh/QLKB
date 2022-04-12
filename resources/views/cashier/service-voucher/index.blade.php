@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thu ngân phiếu dịch vụ @endsection
+@section('title') Thu ngân đơn thuốc @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,13 +12,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Danh sách thu ngân phiếu dịch vụ</h4>
+                            <h4 class="mb-0 font-size-18">Danh sách thu ngân đơn thuốc</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);" title="Quản lý" data-toggle="tooltip" data-placement="top">Quản lý</a></li>
                                     <li class="breadcrumb-item active">Thu ngân</li>
-                                    <li class="breadcrumb-item active">Danh sách thu ngân phiếu dịch vụ</li>
+                                    <li class="breadcrumb-item active">Danh sách thu ngân đơn thuốc</li>
                                 </ol>
                             </div>
 
@@ -81,9 +81,13 @@
                                                     <td>{{ date("d-m-Y", strtotime($service_voucher->end_date)) }}</td>
                                                     <td>{{ number_format($service_voucher->total_money, 0, ',', '.') }}</td>
                                                     <td>
-                                                        @if ($service_voucher->payment_status)
+                                                        @if ($service_voucher->payment_status == 1)
                                                             <label class="btn btn-success waves-effect waves-light">
                                                                 <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã thanh toán
+                                                            </label>
+                                                        @elseif ($service_voucher->payment_status == 2)
+                                                            <label class="btn btn-success waves-effect waves-light">
+                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã hoàn tiền
                                                             </label>
                                                         @else
                                                             <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa thanh toán</label>
@@ -92,12 +96,22 @@
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                                             @if ($service_voucher->payment_status == 0)
-                                                                @can('Xác nhận thanh toán phiếu dịch vụ')
+                                                                @can('Xác nhận thanh toán đơn thuốc')
                                                                 <li class="list-inline-item px">
                                                                     <form method="post" action="{{ route('cashier_service_vouchers.confirm-payment', $service_voucher->id) }}">
                                                                         @csrf
                                                                         
                                                                         <button type="submit" data-toggle="tooltip" data-placement="top" title="Xác nhận thanh toán" class="border-0 bg-white"><i class="bx bxs-calendar-check text-success"></i></button>
+                                                                    </form>
+                                                                </li>
+                                                                @endcan
+                                                            @elseif ($service_voucher->payment_status == 1)
+                                                                @can('Hoàn tiền đơn thuốc')
+                                                                <li class="list-inline-item px">
+                                                                    <form method="post" action="{{ route('cashier_service_vouchers.refund', $service_voucher->id) }}">
+                                                                        @csrf
+                                                                        
+                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Hoàn tiền" class="border-0 bg-white"><i class="bx bxs-calendar-check text-success"></i></button>
                                                                     </form>
                                                                 </li>
                                                                 @endcan

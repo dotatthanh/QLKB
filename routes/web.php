@@ -20,6 +20,8 @@ use App\Http\Controllers\CashierServiceVoucherController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CashierPrescriptionController;
+use App\Http\Controllers\RevenueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,9 @@ Route::middleware(['guest_website'])->group(function () {
 
 // Admin
 Route::prefix('admin')->group(function () {
+	Route::get('/', function () {
+		return redirect()->route('login');
+	});
 	Route::middleware(['auth'])->group(function () {
 		Route::resource('bookings', BookingController::class);
 		Route::post('/bookings/approve-booking/{id}', [BookingController::class, 'approveBooking'])->name('bookings.approve-booking');
@@ -78,8 +83,16 @@ Route::prefix('admin')->group(function () {
 		Route::resource('patients', PatientController::class);
 		Route::resource('cashier_health_certifications', CashierHealthCertificationController::class);
 		Route::post('/cashier_health_certifications/confirm-payment/{id}', [CashierHealthCertificationController::class, 'confirmPayment'])->name('cashier_health_certifications.confirm-payment');
+		Route::post('/cashier_health_certifications/refund/{id}', [CashierHealthCertificationController::class, 'refund'])->name('cashier_health_certifications.refund');
 		Route::resource('cashier_service_vouchers', CashierServiceVoucherController::class);
 		Route::post('/cashier_service_vouchers/confirm-payment/{id}', [CashierServiceVoucherController::class, 'confirmPayment'])->name('cashier_service_vouchers.confirm-payment');
+		Route::post('/cashier_service_vouchers/refund/{id}', [CashierServiceVoucherController::class, 'refund'])->name('cashier_service_vouchers.refund');
+
+		Route::resource('cashier_prescriptions', CashierPrescriptionController::class);
+		Route::post('/cashier_prescriptions/confirm-payment/{id}', [CashierPrescriptionController::class, 'confirmPayment'])->name('cashier_prescriptions.confirm-payment');
+		Route::post('/cashier_prescriptions/refund/{id}', [CashierPrescriptionController::class, 'refund'])->name('cashier_prescriptions.refund');
+
+		Route::resource('revenues', RevenueController::class);
 
 		Route::resource('users', UserController::class);
 		Route::get('/users/view-change-password/{user}', [UserController::class, 'viewChangePassword'])->name('users.view-change-password');
@@ -102,7 +115,6 @@ Route::prefix('admin')->group(function () {
 
 		Route::resource('prescriptions', PrescriptionController::class);
 		Route::get('/prescriptions/print/{prescription}', [PrescriptionController::class, 'print'])->name('prescriptions.print');
-		Route::post('/prescriptions/confirm-payment/{prescription}', [PrescriptionController::class, 'confirmPayment'])->name('prescriptions.confirm-payment');
 
 		Route::resource('service_vouchers', ServiceVoucherController::class);
 		Route::get('/service_vouchers/print/{service_voucher}', [ServiceVoucherController::class, 'print'])->name('service_vouchers.print');

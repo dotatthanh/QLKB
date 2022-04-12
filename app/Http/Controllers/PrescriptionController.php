@@ -72,8 +72,6 @@ class PrescriptionController extends Controller
      */
     public function store(StorePrescriptionRequest $request)
     {
-        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
-
         try {
             DB::beginTransaction();
 
@@ -83,7 +81,6 @@ class PrescriptionController extends Controller
                 'user_id' => $request->user_id,
                 'total_money' => 0,
                 'status' => 0,
-                'is_health_insurance_card' => $is_health_insurance_card,
                 'health_certification_id' => $request->health_certification_id,
             ]);
 
@@ -91,13 +88,8 @@ class PrescriptionController extends Controller
             foreach($request->prescription_details as $prescription_detail) {
                 $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
                 
-                if ($is_health_insurance_card == 0) {
-                    $total = $medicine->price * $prescription_detail['amount'];
-                    $total_money += $total;
-                }
-                else {
-                    $total = 0;
-                }
+                $total = $medicine->price * $prescription_detail['amount'];
+                $total_money += $total;
 
                 PrescriptionDetail::create([
                     'prescription_id' => $create_precription->id,
@@ -175,7 +167,6 @@ class PrescriptionController extends Controller
      */
     public function update(StorePrescriptionRequest $request, Prescription $prescription)
     {
-        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
 
         try {
             DB::beginTransaction();
@@ -186,13 +177,8 @@ class PrescriptionController extends Controller
             foreach($request->prescription_details as $prescription_detail) {
                 $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
                 
-                if ($is_health_insurance_card == 0) {
-                    $total = $medicine->price * $prescription_detail['amount'];
-                    $total_money += $total;
-                }
-                else {
-                    $total = 0;
-                }
+                $total = $medicine->price * $prescription_detail['amount'];
+                $total_money += $total;
 
                 PrescriptionDetail::create([
                     'prescription_id' => $prescription->id,
@@ -208,7 +194,6 @@ class PrescriptionController extends Controller
             $prescription->update([
                 'user_id' => $request->user_id,
                 'patient_id' => $request->patient_id,
-                'is_health_insurance_card' => $is_health_insurance_card,
                 'total_money' => $total_money,
             ]);
 
@@ -241,23 +226,6 @@ class PrescriptionController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->with('alert-error','Xóa đơn thuốc thất bại!');
-        }
-    }
-
-    public function confirmPayment(Prescription $prescription)
-    {
-        try {
-            DB::beginTransaction();
-
-            $prescription->update([
-                'status' => 1
-            ]);
-            
-            DB::commit();
-            return redirect()->route('prescriptions.index')->with('alert-success','Xác nhận thanh toán thành công!');
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->back()->with('alert-error','Xác nhận thanh toán thất bại!');
         }
     }
 

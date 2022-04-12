@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Prescription;
 use App\Models\Booking;
+use App\Models\ConsultingRoom;
 use App\Models\HealthCertification;
 
 class WebController extends Controller
@@ -176,7 +177,13 @@ class WebController extends Controller
 
     public function bookingExamination()
     {
-        return view('web.booking-examination');
+        $consulting_rooms = ConsultingRoom::all();
+
+        $data = [
+            'consulting_rooms' => $consulting_rooms,
+        ];
+
+        return view('web.booking-examination', $data);
     }
 
     public function booking(BookingRequest $request)
@@ -190,6 +197,7 @@ class WebController extends Controller
             Booking::create([
                 'status' => 0,
                 'patient_id' => $patient_id,
+                'consulting_room_id' => $request->consulting_room_id,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'name' => $request->name,

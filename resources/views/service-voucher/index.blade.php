@@ -97,9 +97,13 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($service_voucher->payment_status)
+                                                        @if ($service_voucher->payment_status == 1)
                                                             <label class="btn btn-success waves-effect waves-light">
                                                                 <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã thanh toán
+                                                            </label>
+                                                        @elseif ($service_voucher->payment_status == 2)
+                                                            <label class="btn btn-success waves-effect waves-light">
+                                                                <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã hoàn tiền
                                                             </label>
                                                         @else
                                                             <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa thanh toán</label>
@@ -151,7 +155,7 @@
                                                                             @csrf
                                                                             @method('DELETE')
                                                                             
-                                                                            <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
+                                                                            <button onclick="return confirm('Bạn có chắc chắn muốn xoá?')" type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                         </form>
                                                                     </li>
                                                                     @endcan

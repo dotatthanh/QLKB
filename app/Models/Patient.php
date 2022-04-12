@@ -36,11 +36,6 @@ class Patient extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-    public function healthInsuranceCard()
-    {
-        return $this->hasOne(HealthInsuranceCard::class);
-    }
-
     public function serviceVouchers()
     {
         return $this->hasMany(ServiceVoucher::class);

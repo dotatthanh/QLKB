@@ -128,6 +128,7 @@
         <script src="{{ asset('libs/metismenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
+
         <!-- toastr plugin -->
         <script src="{{ asset('libs\toastr\build\toastr.min.js') }}"></script>
 

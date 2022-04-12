@@ -32,6 +32,7 @@ class BookingRequest extends FormRequest
             ],
             'date' => 'required',
             'time' => 'required',
+            'consulting_room_id' => 'required',
         ];
     }
 
@@ -51,6 +52,7 @@ class BookingRequest extends FormRequest
             'email.max' => 'Email không được dài quá :max ký tự.',
             'content.required' => 'Triệu chứng hoặc yêu cầu khám là trường bắt buộc.', 
             'content.max' => 'Triệu chứng hoặc yêu cầu khám không được dài quá :max ký tự.', 
+            'consulting_room_id.required' => 'Phòng khám là trường bắt buộc.', 
         ];
     }
 }

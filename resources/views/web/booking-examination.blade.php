@@ -33,6 +33,16 @@
                 <textarea name="content" id="content" class="form-control mt-3" placeholder="Triệu chứng hoặc yêu cầu khám (*)" rows="5"></textarea>
                 {!! $errors->first('content', '<span class="text-danger">:message</span>') !!}
 
+                <div class="mt-3">
+                    <select name="consulting_room_id" class="form-control select2">
+                        <option value="">Chọn phòng khám</option>
+                        @foreach ($consulting_rooms as $consulting_room)
+                            <option value="{{ $consulting_room->id }}">{{ $consulting_room->name }}</option>
+                        @endforeach
+                    </select>
+                    {!! $errors->first('email', '<span class="text-danger">:message</span>') !!}
+                </div>
+
                 <div class="docs-datepicker mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày khám (*)" autocomplete="off" value="{{ old('date', isset($data_edit->date) ? date('d-m-Y', strtotime($data_edit->date)) : '') }}">
@@ -60,6 +70,11 @@
 @endsection
 
 @push('js')
+    <!-- select 2 plugin -->
+    <script src="{{ asset('libs\select2\js\select2.min.js') }}"></script>
+
+    <!-- init js -->
+    <script src="{{ asset('js\pages\ecommerce-select2.init.js') }}"></script>
     <!-- datepicker -->
     <script src="{{ asset('libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('libs\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js') }}"></script>
@@ -84,6 +99,8 @@
     <link href="{{ asset('libs\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('libs\bootstrap-timepicker\css\bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
+    <!-- select2 css -->
+    <link href="{{ asset('libs\select2\css\select2.min.css') }}" rel="stylesheet" type="text/css">
 
     <style>
         .bootstrap-timepicker-hour, .bootstrap-timepicker-minute, .bootstrap-timepicker-meridian {
