@@ -57,7 +57,6 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($create_prescription);
         $admin->givePermissionTo($edit_prescription);
         $admin->givePermissionTo($delete_prescription);
-        $admin->givePermissionTo($confirm_payment_prescription);
         $admin->givePermissionTo($print_prescription);
 
         $view_service_voucher = Permission::create(['guard_name' => 'admin','name' => 'Xem danh sách phiếu dịch vụ']);
