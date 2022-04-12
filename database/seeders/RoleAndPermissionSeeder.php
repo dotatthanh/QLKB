@@ -50,7 +50,6 @@ class RoleAndPermissionSeeder extends Seeder
         $create_prescription = Permission::create(['guard_name' => 'admin','name' => 'Thêm đơn thuốc']);
         $edit_prescription = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa đơn thuốc']);
         $delete_prescription = Permission::create(['guard_name' => 'admin','name' => 'Xóa đơn thuốc']);
-        $confirm_payment_prescription = Permission::create(['guard_name' => 'admin','name' => 'Xác nhận thanh toán đơn thuốc']);
         $print_prescription = Permission::create(['guard_name' => 'admin','name' => 'In đơn thuốc']);
 
         $admin->givePermissionTo($view_prescription);
