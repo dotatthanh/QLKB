@@ -30,7 +30,7 @@
                     <div class="col-12">
                         <form method="POST" action="{{ route('health_certifications.update', $data_edit->id) }}" enctype="multipart/form-data">
                             @method('PUT')
-                            @include('health-certification._form')
+                            @include('health-certification._form', ['routeType' => 'edit'])
                         </form>
 
                     </div>

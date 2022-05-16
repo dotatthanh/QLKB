@@ -271,20 +271,20 @@
                                             </div>
 
                                             <div class="col-sm-2">
-                                                <label>Ngày bắt đầu :</label>
+                                                <label>Ngày khám :</label>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <label class="font-weight-bold">{{ date("d-m-Y", strtotime($serviceVoucher->start_date)) }}</label>
                                             </div>
 
-                                            <div class="col-sm-2">
+                                            {{-- <div class="col-sm-2">
                                                 <label>Ngày kết thúc :</label>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <label class="font-weight-bold">{{ date("d-m-Y", strtotime($serviceVoucher->end_date)) }}</label>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="col-sm-2">
                                                 <label>Trạng thái :</label>

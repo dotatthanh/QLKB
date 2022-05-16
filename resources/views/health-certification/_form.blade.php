@@ -1,3 +1,8 @@
+@php
+    if (isset($request->booking_id)) {
+        $booking = App\Models\Booking::find($request->booking_id);
+    }
+@endphp
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Thông tin cơ bản</h4>
@@ -20,7 +25,9 @@
                             <select class="form-control select2" name="patient_id">
                                 <option value="">Chọn bệnh nhân</option>
                                 @foreach ($patients as $patient)
-                                    <option value="{{ $patient->id }}" {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->name }}</option>
+                                    <option value="{{ $patient->id }}" {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}
+                                        {{ (isset($booking->patient_id) && $booking->patient_id == $patient->id) ? 'selected' : '' }}
+                                        >{{ $patient->name }}</option>
                                 @endforeach
                             </select>
                             {!! $errors->first('patient_id', '<span class="error">:message</span>') !!}
@@ -41,7 +48,13 @@
                     <label for="date">Ngày khám <span class="text-danger">*</span></label>
                     <div class="docs-datepicker">
                         <div class="input-group">
-                            <input type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày khám" autocomplete="off" value="{{ old('date', isset($data_edit->date) ? date('d-m-Y', strtotime($data_edit->date)) : '') }}">
+                            <input type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày khám" autocomplete="off" 
+                                @if ($routeType == 'create')
+                                    value="{{ old('date', isset($booking->date) ? date('d-m-Y', strtotime($booking->date)) : '') }}"
+                                @elseif ($routeType == 'edit')
+                                    value="{{ date('d-m-Y', strtotime($data_edit->date)) }}"
+                                @endif
+                            >
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -61,7 +74,9 @@
                     <select class="form-control select2" name="consulting_room_id">
                         <option value="">Chọn phòng khám</option>
                         @foreach ($consulting_rooms as $consulting_room)
-                            <option value="{{ $consulting_room->id }}" {{ isset($data_edit->consulting_room_id) && $data_edit->consulting_room_id == $consulting_room->id ? 'selected' : '' }}>{{ $consulting_room->name }}</option>
+                            <option value="{{ $consulting_room->id }}" {{ isset($data_edit->consulting_room_id) && $data_edit->consulting_room_id == $consulting_room->id ? 'selected' : '' }}
+                                {{ (isset($booking->consulting_room_id) && $booking->consulting_room_id == $consulting_room->id) ? 'selected' : '' }}
+                                >{{ $consulting_room->name }}</option>
                         @endforeach
                     </select>
                     {!! $errors->first('consulting_room_id', '<span class="error">:message</span>') !!}
@@ -81,8 +96,13 @@
                 <div class="form-group">
                     <label for="time">Giờ khám <span class="text-danger">*</span></label>
                     <div class="input-group" id="timepicker-input-group2">
-                        <input id="timepicker2" type="text" class="form-control" name="time" data-provide="timepicker">
-
+                        <input id="timepicker2" type="text" class="form-control" name="time" data-provide="timepicker"
+                        @if ($routeType == 'create')
+                            value="{{ old('time', isset($booking->time) ? $booking->time : '') }}"
+                        @elseif ($routeType == 'edit')
+                            value="{{ $data_edit->time }}"
+                        @endif
+                        >
                         <span class="input-group-text"><i class="mdi mdi-clock-outline"></i></span>
                     </div>
                     {!! $errors->first('time', '<span class="error">:message</span>') !!}

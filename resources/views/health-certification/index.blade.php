@@ -130,11 +130,11 @@
                                                                     </li>
                                                                     @endcan
 
-                                                                    {{-- @can('Tạo phiếu dịch vụ') --}}
+                                                                    @can('Tạo phiếu dịch vụ')
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('service_vouchers.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Tạo phiếu dịch vụ"><i class="mdi mdi-plus text-success"></i></a>
                                                                     </li>
-                                                                    {{-- @endcan --}}
+                                                                    @endcan
                                                                 @endif
 
 

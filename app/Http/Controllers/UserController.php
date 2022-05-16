@@ -79,6 +79,7 @@ class UserController extends Controller
                 'birthday' => date("Y-m-d", strtotime($request->birthday)),
                 'phone' => $request->phone,
                 'address' => $request->address,
+                'description' => $request->description,
                 'avatar' => $file_path,
             ]);
 
@@ -160,6 +161,7 @@ class UserController extends Controller
                     'phone' => $request->phone,
                     'address' => $request->address,
                     'avatar' => $file_path,
+                    'description' => $request->description,
                 ]);
             }
             else {
@@ -170,6 +172,7 @@ class UserController extends Controller
                     'birthday' => date("Y-m-d", strtotime($request->birthday)),
                     'phone' => $request->phone,
                     'address' => $request->address,
+                    'description' => $request->description,
                 ]);
             }
         

@@ -68,6 +68,7 @@
                                                 <th>Số điện thoại</th>
                                                 <th>Ngày sinh</th>
                                                 <th>Địa chỉ</th>
+                                                <th>Mô tả</th>
                                                 <th class="text-center">Hành động</th>
                                             </tr>
                                         </thead>
@@ -100,6 +101,28 @@
                                                     <td>{{ $user->phone }}</td>
                                                     <td>{{ date("d-m-Y", strtotime($user->birthday)) }}</td>
                                                     <td>{{ $user->address }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#description{{ $user->id }}">Xem</button>
+
+                                                        <div class="modal fade" id="description{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Mô tả</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        {!! $user->description !!}
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td class="text-center">
                                                         @if ($user->id != 1)
                                                         <ul class="list-inline font-size-20 contact-links mb-0">

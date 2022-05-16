@@ -42,7 +42,7 @@ class HealthCertificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $patients = Patient::all();
         $consulting_rooms = ConsultingRoom::all();
@@ -52,6 +52,7 @@ class HealthCertificationController extends Controller
             'patients' => $patients,
             'consulting_rooms' => $consulting_rooms,
             'users' => $users,
+            'request' => $request,
         ];
 
         return view('health-certification.create', $data);

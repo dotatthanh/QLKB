@@ -57,8 +57,8 @@
                                                 <th>Tên bệnh nhân</th>
                                                 <th>Dịch vụ khám</th>
                                                 <th>Bác sĩ</th>
-                                                <th>Ngày bắt đầu</th>
-                                                <th>Ngày kết thúc</th>
+                                                <th>Ngày khám</th>
+                                                {{-- <th>Ngày kết thúc</th> --}}
                                                 <th>Tổng tiền (VNĐ)</th>
                                                 <th>Trạng thái</th>
                                                 <th class="text-center">Hành động</th>
@@ -78,7 +78,7 @@
                                                     </td>
                                                     <td>{{ $service_voucher->user->name }}</td>
                                                     <td>{{ date("d-m-Y", strtotime($service_voucher->start_date)) }}</td>
-                                                    <td>{{ date("d-m-Y", strtotime($service_voucher->end_date)) }}</td>
+                                                    {{-- <td>{{ date("d-m-Y", strtotime($service_voucher->end_date)) }}</td> --}}
                                                     <td>{{ number_format($service_voucher->total_money, 0, ',', '.') }}</td>
                                                     <td>
                                                         @if ($service_voucher->payment_status == 1)

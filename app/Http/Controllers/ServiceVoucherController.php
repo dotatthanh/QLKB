@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\User;
 use App\Models\MedicalService;
 use App\Models\ServiceVoucher;
+use App\Models\HealthCertification;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreServiceVoucherRequest;
 use DB;
@@ -77,7 +78,7 @@ class ServiceVoucherController extends Controller
                 'medical_service_id' => $request->medical_service_id,
                 'user_id' => $request->user_id,
                 'start_date' => date("Y-m-d", strtotime($request->start_date)),
-                'end_date' => date("Y-m-d", strtotime($request->end_date)),
+                // 'end_date' => date("Y-m-d", strtotime($request->end_date)),
                 'total_money' => $medical_service->price,
                 'status' => 0,
                 'health_certification_id' => $health_certification_id,
@@ -158,7 +159,7 @@ class ServiceVoucherController extends Controller
                 'medical_service_id' => $request->medical_service_id,
                 'user_id' => $request->user_id,
                 'start_date' => date("Y-m-d", strtotime($request->start_date)),
-                'end_date' => date("Y-m-d", strtotime($request->end_date)),
+                // 'end_date' => date("Y-m-d", strtotime($request->end_date)),
                 'total_money' => $medical_service->price,
             ]);
 

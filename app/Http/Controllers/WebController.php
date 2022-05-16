@@ -17,12 +17,19 @@ use App\Models\Prescription;
 use App\Models\Booking;
 use App\Models\ConsultingRoom;
 use App\Models\HealthCertification;
+use App\Models\User;
 
 class WebController extends Controller
 {
     public function index()
     {
-    	return view('web.index');
+        $doctors = User::role("Bác sĩ")->get();
+
+        $data = [
+            'doctors' => $doctors,
+        ];
+
+    	return view('web.index', $data);
     }
 
     public function login()

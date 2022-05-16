@@ -15,7 +15,7 @@ class ServiceVoucher extends Model
     	'medical_service_id',
     	'user_id',
     	'start_date',
-    	'end_date',
+    	// 'end_date',
     	'total_money',
     	'status',
         'payment_status',

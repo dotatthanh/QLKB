@@ -45,13 +45,13 @@
     <div class="container">
         <div class="row bg-header">
             <div class="col-3">
-                <span class="font-weight-bold">Cấp cứu:</span> <a href="tel:0901 793 122" class="text-danger">0901 793 122</a>
+                <span class="font-weight-bold">Cấp cứu:</span> <a href="tel:0929841466" class="text-danger">0929841466</a>
             </div>
             <div class="col-3">
-                <span class="font-weight-bold">Tổng đài:</span> <a href="tel:0901 793 122" class="text-danger">0901 793 122</a>
+                <span class="font-weight-bold">Tổng đài:</span> <a href="tel:0929842466" class="text-danger">0929842466</a>
             </div>
             <div class="col-3">
-                <span class="font-weight-bold">Trực sản (24/24):</span> <a href="tel:0901 793 122" class="text-danger">0901 793 122</a>
+                <span class="font-weight-bold">Trực sản (24/24):</span> <a href="tel:0339883462" class="text-danger">0339883462</a>
             </div>
             <div class="col-3 text-right">
                 @if (auth()->guard('web')->user())
@@ -81,7 +81,9 @@
         </div>
 
         <div class="row align-items-center" style="display: flex;">
-            <div class="col-3 logo">Trung tâm y tế Tận Tâm</div>
+            <div class="col-3">
+                <img src="{{ asset('/images/logo.jpg') }}" alt="" class="w-100">
+            </div>
             <div class="col-9 slogan">
                 CHĂM SÓC SỨC KHOẺ TRỌN ĐỜI CHO BẠN
             </div>
@@ -123,27 +125,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <h4 class="h4 font-weight-bold title-footer">Trung tâm y tế Tận Tâm</h4>
-                    <p>Chi nhánh công ty CP Y Khoa & Thẩm Mỹ Thu Cúc</p>
-                    <p>ĐKKD số: 0102624215-001 – Sở Kế hoạch và Đầu tư thành phố Hà Nội cấp ngày 11/02/2009</p>
+                    <h4 class="h4 font-weight-bold title-footer">Phòng khám Nhân Ái</h4>
+                    <p>ĐKKD số: 0102624215-001 – Sở Kế hoạch và Đầu tư thành phố cấp ngày 11/02/2009</p>
                     <p>Giấy phép hoạt động cơ sở khám chữa bệnh số 26/BYT-GPHD do Bộ y tế cấp ngày 21/02/2017</p>
-                    <p>Email: contact@thucuchospital.vn</p>
-                    <p>Tổng đài tư vấn: <a href="tel:1900 5588 92">1900 5588 92</a></p>
-                    <p>Email: cskh@thucuchospital.vn</p>
+                    <p>Email: <a href="mailto:minhman@gmail.com">minhman@gmail.com</a></p>
+                    <p>Tổng đài tư vấn: <a href="tel:0929842466">0929842466</a></p>
+                    <p>Email: <a href="mailto:yenlinh@gmail.com">yenlinh@gmail.com</a></p>
                 </div>
 
                 <div class="col-6">
-                    <p>Địa chỉ: 286 Thụy Khuê, Tây Hồ, Hà Nội</p>
-                    <p>Cấp cứu (24/24): <a href="tel:0901 793 122">0901 793 122</a></p>
-                    <p>Trực sản (24/24): <a href="tel:0936 245 499">0936 245 499</a></p>
-                    <p>Liên hệ: <a href="tel:1900 5588 92">1900 5588 92</a> hoặc <a href="tel:0936 388 288">0936 388 288</a> đặt lịch khám</p>
-                    <p>Hotline giao thuốc tận nhà: <a href="tel:0936347266">0936347266</a></p>
+                    <p>Địa chỉ: 12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, TP HCM</p>
+                    <p>Cấp cứu (24/24): <a href="tel:0929841466">0929841466</a></p>
+                    <p>Trực sản (24/24): <a href="tel:0339883462">0339883462</a></p>
+                    <p>Liên hệ: <a href="tel:1900 5588 92">0929841466</a> hoặc <a href="tel:0936 388 288">0339883462</a> đặt lịch khám</p>
                 </div>
             </div>
         </div>
 
         <div class="coppyright">
-            COPYRIGHT ©2020 Trung tâm y tế tận tâm
+            COPYRIGHT ©2020 Phòng khám Nhân Ái
         </div>
 
     </footer>

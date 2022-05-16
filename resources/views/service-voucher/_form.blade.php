@@ -1,3 +1,8 @@
+@php
+    if (isset($request->health_certification_id)) {
+        $health_certification = App\Models\HealthCertification::find($request->health_certification_id);
+    }
+@endphp
 <div class="card">
     <div class="card-body">
 
@@ -18,7 +23,10 @@
                             <select class="form-control select2" name="patient_id">
                                 <option value="">Chọn bệnh nhân</option>
                                 @foreach ($patients as $patient)
-                                    <option value="{{ $patient->id }}" {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->name }}</option>
+                                    <option value="{{ $patient->id }}" 
+                                        {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}
+                                        {{ (isset($health_certification->patient_id) && $health_certification->patient_id == $patient->id) ? 'selected' : '' }}
+                                        >{{ $patient->name }}</option>
                                 @endforeach
                             </select>
                             {!! $errors->first('patient_id', '<span class="error">:message</span>') !!}
@@ -38,21 +46,7 @@
                             {!! $errors->first('medical_service_id', '<span class="error">:message</span>') !!}
                         </div>
 
-                        <div class="form-group">
-                            <label for="start_date">Ngày bắt đầu <span class="text-danger">*</span></label>
-                            <div class="docs-datepicker">
-                                <div class="input-group">
-                                    <input type="text" class="form-control docs-date" name="start_date" placeholder="Chọn ngày" autocomplete="off" value="{{ old('start_date', isset($data_edit->start_date) ? date('d-m-Y', strtotime($data_edit->start_date)) : '') }}">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="docs-datepicker-container"></div>
-                            </div>
-                            {!! $errors->first('start_date', '<span class="error">:message</span>') !!}
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -63,13 +57,31 @@
                     <select class="form-control select2" name="user_id">
                         <option value="">Chọn bác sĩ</option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ isset($data_edit->user_id) && $data_edit->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ isset($data_edit->user_id) && $data_edit->user_id == $user->id ? 'selected' : '' }}
+                                {{ (isset($health_certification->user_id) && $health_certification->user_id == $user->id) ? 'selected' : '' }}
+                                >{{ $user->name }}</option>
                         @endforeach
                     </select>
                     {!! $errors->first('user_id', '<span class="error">:message</span>') !!}
                 </div>
-                
+
                 <div class="form-group">
+                    <label for="start_date">Ngày khám <span class="text-danger">*</span></label>
+                    <div class="docs-datepicker">
+                        <div class="input-group">
+                            <input type="text" class="form-control docs-date" name="start_date" placeholder="Chọn ngày" autocomplete="off" value="{{ old('start_date', isset($data_edit->start_date) ? date('d-m-Y', strtotime($data_edit->start_date)) : '') }}">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="docs-datepicker-container"></div>
+                    </div>
+                    {!! $errors->first('start_date', '<span class="error">:message</span>') !!}
+                </div>
+                
+                {{-- <div class="form-group">
                     <label for="end_date">Ngày kết thúc <span class="text-danger">*</span></label>
                     <div class="docs-datepicker">
                         <div class="input-group">
@@ -83,7 +95,7 @@
                         <div class="docs-datepicker-container"></div>
                     </div>
                     {!! $errors->first('end_date', '<span class="error">:message</span>') !!}
-                </div>
+                </div> --}}
             </div>
 
         </div>

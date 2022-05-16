@@ -29,11 +29,6 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <h4 class="card-title">Thông tin cơ bản</h4>
-                                <p class="card-title-desc">Điền tất cả thông tin bên dưới</p>
 
                                 <form method="POST" action="{{ route('users.update', $data_edit->id) }}" enctype="multipart/form-data">
                                     @method('PUT')
@@ -41,8 +36,6 @@
                                     
                                 </form>
 
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- end row -->
@@ -85,6 +78,11 @@
     <script src="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.js') }}"></script>
     <!-- form advanced init -->
     <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
+
+    <!-- Summernote js -->
+    <script src="{{ asset('libs\summernote\summernote-bs4.min.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('js\pages\form-editor.init.js') }}"></script>
     <script type="text/javascript">
         let date = new Date();
         let today =  date.getFullYear()-18 + '-' + date.getMonth() + '-' + date.getDate();
@@ -102,4 +100,6 @@
     <link href="{{ asset('libs\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('libs\bootstrap-timepicker\css\bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
+    <!-- Summernote css -->
+    <link href="{{ asset('libs\summernote\summernote-bs4.min.css') }}" rel="stylesheet" type="text/css">
 @endpush

@@ -5,7 +5,7 @@
 @section('content')
     <h2 class="title">GIỚI THIỆU</h2>
     <p>
-        Chính thức thành lập từ năm 2011, sau 1 thập kỷ đi vào hoạt động, Bệnh viện Đa khoa Quốc tế Thu Cúc nay là Hệ thống Y tế Thu Cúc TCI đang là địa chỉ được đông đảo người bệnh tin chọn, đứng top 3 bệnh viện tư và top 5 toàn bệnh viện có điểm chất lượng dẫn đầu Hà Nội. Tới đây, Hệ thống y tế Thu Cúc sẽ thực hiện nhanh chóng việc mở chuỗi các cơ sở y tế Thu Cúc TCI trên toàn quốc, đưa dịch vụ y tế chất lượng cao đến gần và dễ tiếp cận hơn với người dân cả nước. Mục tiêu này có sự hỗ trợ tích cực từ nguồn vốn 26,7 triệu USD được Quỹ đầu tư danh tiếng Vinacapital rót vào cho Hệ thống Y tế Thu Cúc trong tháng 8/2020.
+        Với phương châm "Người bệnh đến được đón tiếp niềm nở, ở được chăm sóc tận tình, về được dặn dò chu đáo."Phòng khám Nhân ái mong muốn mang lại tâm lý thoải mái cho người bệnh trong suốt quá trình điều trị
     </p>
 
     <img src="images/Anh-1-1.jpg" alt="" class="d-block m-auto">
@@ -17,7 +17,7 @@
 
     <h2 class="title">LỊCH SỬ</h2>
     <p>
-        Chính thức thành lập từ năm 2011, sau 1 thập kỷ đi vào hoạt động, Bệnh viện Đa khoa Quốc tế Thu Cúc nay là Hệ thống Y tế Thu Cúc TCI đang là địa chỉ được đông đảo người bệnh tin chọn, đứng top 3 bệnh viện tư và top 5 toàn bệnh viện có điểm chất lượng dẫn đầu Hà Nội. Tới đây, Hệ thống y tế Thu Cúc sẽ thực hiện nhanh chóng việc mở chuỗi các cơ sở y tế Thu Cúc TCI trên toàn quốc, đưa dịch vụ y tế chất lượng cao đến gần và dễ tiếp cận hơn với người dân cả nước. Mục tiêu này có sự hỗ trợ tích cực từ nguồn vốn 26,7 triệu USD được Quỹ đầu tư danh tiếng Vinacapital rót vào cho Hệ thống Y tế Thu Cúc trong tháng 8/2020.
+        Chính thức thành lập từ năm 2018, Phòng khám Nhân Ái đang là địa chỉ được đông đảo người bệnh tin chọn tại YP HCM Hà Nội. Tới đây, Phòng khám Nhân Ái sẽ thực hiện nhanh chóng việc mở chuỗi các phòng khám Nhân Ái trên toàn quốc, đưa dịch vụ y tế chất lượng cao đến gần và dễ tiếp cận hơn với người dân cả nước. Mục tiêu này có sự hỗ trợ tích cực từ nguồn vốn 26,7 triệu USD được Quỹ đầu tư danh tiếng Vinacapital rót vào cho Phòng khám Nhân Ái trong tháng 8/2022.
     </p>
 
     <img src="images/Anh-1-1.jpg" alt="" class="d-block m-auto">
@@ -30,123 +30,24 @@
     <h2 class="title">ĐỘI NGŨ BÁC SĨ</h2>
 
     <div class="slider-for">
+        @foreach ($doctors as $doctor)
         <div class="item-slider-for">
             <div class="row">
-                <div class="col-5">
-                    <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
+                <div class="col-5 text-center">
+                    <img class="img-responsive d-inline-block" src="{{ asset($doctor->avatar) }}" alt="" title="" style="max-width: 100%;">
                 </div>
                 <div class="col-7">
-                    <h4>1Tiến sĩ, Bác sĩ CKI </h4>
-                    <h3>Nguyen Van A</h3>
-                    <h5>Giám đốc Phòng khám Đa khoa Thu Cúc (32 Đại Từ)</h5>
-                    <p>Tiến sĩ, Bác sĩ CKI Nguyễn Đức Hoan tốt nghiệp Học viện Quân Y và có nhiều năm công tác tại bệnh viện lớn, đảm nhận nhiều chức vụ quan trọng:<br>
-                        * Bác sĩ - Công tác tại Mặt trận 719 Tiền Phương BQP - Pnompenh, Campuchia<br>
-                        * Bác sĩ - Công tác tại phòng Quân y, Bộ Tổng tham mưu, BQP<br>
-                        * Bác sĩ điều trị tại Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Chăm sóc bảo vệ Sức khỏe cán bộ TW (A11), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó Viện trưởng kiêm Chủ nhiệm Khoa Nội tổng hợp tại Viện điều trị cán bộ cao cấp Quân Đội - BV TƯQĐ 108<br>
-                    Bằng kiến thức chuyên môn sâu rộng, sự dày dặn kinh nghiệm và trái tim nhân hậu của người thầy thuốc&nbsp;Tiến sĩ, Bác sĩ Nguyễn Đức Hoan đã chăm sóc sức khỏe cho hàng ngàn người bệnh, trong đó có rất nhiều cán bộ cấp cao trong Quân Đội. </p>
+                    <h4>Họ và tên: {{ $doctor->name }} </h4>
+                    {!! $doctor->description !!}
                 </div>
             </div>
         </div>
-
-        <div class="item-slider-for">
-            <div class="row">
-                <div class="col-5">
-                    <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-                </div>
-                <div class="col-7">
-                    <h4>2Tiến sĩ, Bác sĩ CKI </h4>
-                    <h3>Nguyen Van A</h3>
-                    <h5>Giám đốc Phòng khám Đa khoa Thu Cúc (32 Đại Từ)</h5>
-                    <p>Tiến sĩ, Bác sĩ CKI Nguyễn Đức Hoan tốt nghiệp Học viện Quân Y và có nhiều năm công tác tại bệnh viện lớn, đảm nhận nhiều chức vụ quan trọng:<br>
-                        * Bác sĩ - Công tác tại Mặt trận 719 Tiền Phương BQP - Pnompenh, Campuchia<br>
-                        * Bác sĩ - Công tác tại phòng Quân y, Bộ Tổng tham mưu, BQP<br>
-                        * Bác sĩ điều trị tại Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Chăm sóc bảo vệ Sức khỏe cán bộ TW (A11), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó Viện trưởng kiêm Chủ nhiệm Khoa Nội tổng hợp tại Viện điều trị cán bộ cao cấp Quân Đội - BV TƯQĐ 108<br>
-                    Bằng kiến thức chuyên môn sâu rộng, sự dày dặn kinh nghiệm và trái tim nhân hậu của người thầy thuốc&nbsp;Tiến sĩ, Bác sĩ Nguyễn Đức Hoan đã chăm sóc sức khỏe cho hàng ngàn người bệnh, trong đó có rất nhiều cán bộ cấp cao trong Quân Đội. </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item-slider-for">
-            <div class="row">
-                <div class="col-5">
-                    <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-                </div>
-                <div class="col-7">
-                    <h4>3Tiến sĩ, Bác sĩ CKI </h4>
-                    <h3>Nguyen Van A</h3>
-                    <h5>Giám đốc Phòng khám Đa khoa Thu Cúc (32 Đại Từ)</h5>
-                    <p>Tiến sĩ, Bác sĩ CKI Nguyễn Đức Hoan tốt nghiệp Học viện Quân Y và có nhiều năm công tác tại bệnh viện lớn, đảm nhận nhiều chức vụ quan trọng:<br>
-                        * Bác sĩ - Công tác tại Mặt trận 719 Tiền Phương BQP - Pnompenh, Campuchia<br>
-                        * Bác sĩ - Công tác tại phòng Quân y, Bộ Tổng tham mưu, BQP<br>
-                        * Bác sĩ điều trị tại Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Chăm sóc bảo vệ Sức khỏe cán bộ TW (A11), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó Viện trưởng kiêm Chủ nhiệm Khoa Nội tổng hợp tại Viện điều trị cán bộ cao cấp Quân Đội - BV TƯQĐ 108<br>
-                    Bằng kiến thức chuyên môn sâu rộng, sự dày dặn kinh nghiệm và trái tim nhân hậu của người thầy thuốc&nbsp;Tiến sĩ, Bác sĩ Nguyễn Đức Hoan đã chăm sóc sức khỏe cho hàng ngàn người bệnh, trong đó có rất nhiều cán bộ cấp cao trong Quân Đội. </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item-slider-for">
-            <div class="row">
-                <div class="col-5">
-                    <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-                </div>
-                <div class="col-7">
-                    <h4>4Tiến sĩ, Bác sĩ CKI </h4>
-                    <h3>Nguyen Van A</h3>
-                    <h5>Giám đốc Phòng khám Đa khoa Thu Cúc (32 Đại Từ)</h5>
-                    <p>Tiến sĩ, Bác sĩ CKI Nguyễn Đức Hoan tốt nghiệp Học viện Quân Y và có nhiều năm công tác tại bệnh viện lớn, đảm nhận nhiều chức vụ quan trọng:<br>
-                        * Bác sĩ - Công tác tại Mặt trận 719 Tiền Phương BQP - Pnompenh, Campuchia<br>
-                        * Bác sĩ - Công tác tại phòng Quân y, Bộ Tổng tham mưu, BQP<br>
-                        * Bác sĩ điều trị tại Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Chăm sóc bảo vệ Sức khỏe cán bộ TW (A11), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó Viện trưởng kiêm Chủ nhiệm Khoa Nội tổng hợp tại Viện điều trị cán bộ cao cấp Quân Đội - BV TƯQĐ 108<br>
-                    Bằng kiến thức chuyên môn sâu rộng, sự dày dặn kinh nghiệm và trái tim nhân hậu của người thầy thuốc&nbsp;Tiến sĩ, Bác sĩ Nguyễn Đức Hoan đã chăm sóc sức khỏe cho hàng ngàn người bệnh, trong đó có rất nhiều cán bộ cấp cao trong Quân Đội. </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item-slider-for">
-            <div class="row">
-                <div class="col-5">
-                    <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-                </div>
-                <div class="col-7">
-                    <h4>5Tiến sĩ, Bác sĩ CKI </h4>
-                    <h3>Nguyen Van A</h3>
-                    <h5>Giám đốc Phòng khám Đa khoa Thu Cúc (32 Đại Từ)</h5>
-                    <p>Tiến sĩ, Bác sĩ CKI Nguyễn Đức Hoan tốt nghiệp Học viện Quân Y và có nhiều năm công tác tại bệnh viện lớn, đảm nhận nhiều chức vụ quan trọng:<br>
-                        * Bác sĩ - Công tác tại Mặt trận 719 Tiền Phương BQP - Pnompenh, Campuchia<br>
-                        * Bác sĩ - Công tác tại phòng Quân y, Bộ Tổng tham mưu, BQP<br>
-                        * Bác sĩ điều trị tại Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Chăm sóc bảo vệ Sức khỏe cán bộ TW (A11), BV TƯQĐ 108<br>
-                        * Phó chủ nhiệm Khoa Nội cán bộ (A1), BV TƯQĐ 108<br>
-                        * Phó Viện trưởng kiêm Chủ nhiệm Khoa Nội tổng hợp tại Viện điều trị cán bộ cao cấp Quân Đội - BV TƯQĐ 108<br>
-                    Bằng kiến thức chuyên môn sâu rộng, sự dày dặn kinh nghiệm và trái tim nhân hậu của người thầy thuốc&nbsp;Tiến sĩ, Bác sĩ Nguyễn Đức Hoan đã chăm sóc sức khỏe cho hàng ngàn người bệnh, trong đó có rất nhiều cán bộ cấp cao trong Quân Đội. </p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="slider-nav">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
-        <img class="img-responsive" src="images/BS-Nguyen-Pham-Y-Nhi.png" alt="" title="">
+        @foreach ($doctors as $doctor)
+        <img class="img-responsive" src="{{ asset($doctor->avatar) }}" alt="" title="">
+        @endforeach
     </div>
 @endsection
 
