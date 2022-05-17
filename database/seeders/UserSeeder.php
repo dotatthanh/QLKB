@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
         	'birthday' => '2000-08-17',
         	'phone' => '0394121584',
         	'address' => 'Sóc Trăng - Cần Thơ',
+            'description' => 'Admin',
         ]);
     }
 }
