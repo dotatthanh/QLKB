@@ -29,7 +29,9 @@ class RoleAndPermissionSeeder extends Seeder
         $create_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Thêm giấy khám bệnh']);
         $edit_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa giấy khám bệnh']);
         $delete_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Xóa giấy khám bệnh']);
-        $create_service_voucher_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Tạo phiếu dịch vụ']);
+        $create_service_voucher_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Tạo phiếu dịch vụ trong giấy khám bệnh']);
+        $create_prescription_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Tạo đơn thuốc trong giấy khám bệnh']);
+        $create_health_certification_booking = Permission::create(['guard_name' => 'admin','name' => 'Tạo giấy khám bệnh trong đặt lịch']);
         $conclude_health_certification = Permission::create(['guard_name' => 'admin','name' => 'Kết luận khám giấy khám bệnh']);
         $print_health_certification = Permission::create(['guard_name' => 'admin','name' => 'In giấy khám bệnh']);
         $list_prescription = Permission::create(['guard_name' => 'admin','name' => 'Kê đơn thuốc']);
@@ -41,6 +43,8 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($edit_health_certification);
         $admin->givePermissionTo($delete_health_certification);
         $admin->givePermissionTo($create_service_voucher_health_certification);
+        $admin->givePermissionTo($create_prescription_health_certification);
+        $admin->givePermissionTo($create_health_certification_booking);
         $admin->givePermissionTo($conclude_health_certification);
         $admin->givePermissionTo($print_health_certification);
         $admin->givePermissionTo($list_prescription);

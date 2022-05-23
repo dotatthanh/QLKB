@@ -124,7 +124,7 @@ class ServiceVoucherController extends Controller
      * @param  \App\Models\ServiceVoucher  $serviceVoucher
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceVoucher $serviceVoucher)
+    public function edit(Request $request, ServiceVoucher $serviceVoucher)
     {
         $patients = Patient::all();
         $users = User::role('Bác sĩ')->get();
@@ -135,6 +135,7 @@ class ServiceVoucherController extends Controller
             'patients' => $patients,
             'users' => $users,
             'data_edit' => $serviceVoucher,
+            'request' => $request,
         ];
 
         return view('service-voucher.edit', $data);

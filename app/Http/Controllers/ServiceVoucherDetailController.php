@@ -55,7 +55,7 @@ class ServiceVoucherDetailController extends Controller
             }
 
             // Check ngày khám theo ngày bắt đầu và kết thúc
-            if (date("Y-m-d", strtotime($request->date)) >= $service_voucher->start_date && date("Y-m-d", strtotime($request->date)) <= $service_voucher->end_date) {
+            if (date("Y-m-d", strtotime($request->date)) >= $service_voucher->start_date) {
                 $create = ServiceVoucherDetail::create([
                     'date' => date("Y-m-d", strtotime($request->date)),
                     'result' => $request->result,

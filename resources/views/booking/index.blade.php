@@ -111,7 +111,7 @@
                                                                 </li>
                                                                 @endcan
                                                             @else
-                                                                @can('Tạo phiếu dịch vụ')
+                                                                @can('Tạo giấy khám bệnh trong đặt lịch')
                                                                 <li class="list-inline-item px">
                                                                     <a href="{{ route('health_certifications.create', ['booking_id' => $booking->id]) }}" data-toggle="tooltip" data-placement="top" title="Tạo phiếu giấy khám bệnh"><i class="mdi mdi-plus text-success"></i></a>
                                                                 </li>

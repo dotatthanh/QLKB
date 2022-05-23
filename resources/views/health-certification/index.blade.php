@@ -130,7 +130,7 @@
                                                                     </li>
                                                                     @endcan
 
-                                                                    @can('Tạo phiếu dịch vụ')
+                                                                    @can('Tạo phiếu dịch vụ trong giấy khám bệnh')
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('service_vouchers.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Tạo phiếu dịch vụ"><i class="mdi mdi-plus text-success"></i></a>
                                                                     </li>
@@ -156,7 +156,7 @@
                                                                 @endcan
                                                             @else
                                                                 @if (!$health_certification->prescription)
-                                                                    @can('Kê đơn thuốc')
+                                                                    @can('Tạo đơn thuốc trong giấy khám bệnh')
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('prescriptions.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Kê đơn thuốc"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>
