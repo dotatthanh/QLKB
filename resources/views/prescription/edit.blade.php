@@ -124,6 +124,10 @@
                 $(`#total_money`).prop('readonly', false);
             }
         }
+
+        $(".select2-tag").select2({
+            tags: true
+        });
     </script>
 @endpush
 

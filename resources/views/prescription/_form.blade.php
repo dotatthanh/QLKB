@@ -130,9 +130,18 @@
                         <input type="number" id="amount" name="amount" class="form-control" placeholder="Số lượng" required="" data-parsley-min="1" value="{{ $prescription_detail->amount }}">
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-6 custom-validate-select">
                         <label for="use">Cách dùng</label>
-                        <input type="text" id="use" name="use" name="use" class="form-control" required placeholder="Chỉ định cách dùng cho bệnh nhân" value="{{ $prescription_detail->use }}">
+                        <select class="form-control select2-tag" name="use" required="">
+                            <option value="">Chọn hoặc thêm cách dùng</option>
+                            <option {{ $prescription_detail->use == 'Sáng 1 viên' ? 'selected' : ''}} value="Sáng 1 viên">Sáng 1 viên</option>
+                            <option {{ $prescription_detail->use == 'Trưa 1 viên' ? 'selected' : ''}} value="Trưa 1 viên">Trưa 1 viên</option>
+                            <option {{ $prescription_detail->use == 'Tối 1 viên' ? 'selected' : ''}} value="Tối 1 viên">Tối 1 viên</option>
+                            <option {{ $prescription_detail->use == 'Sáng tối mỗi buổi 1 viên' ? 'selected' : ''}} value="Sáng tối mỗi buổi 1 viên">Sáng tối mỗi buổi 1 viên</option>
+                            @if ($prescription_detail->use != 'Sáng 1 viên' && $prescription_detail->use != 'Trưa 1 viên' && $prescription_detail->use != 'Tối 1 viên' && $prescription_detail->use != 'Sáng tối mỗi buổi 1 viên')
+                                <option {{ $prescription_detail->use == $prescription_detail->use ? 'selected' : ''}} value="{{ $prescription_detail->use }}">{{ $prescription_detail->use }}</option>
+                            @endif
+                        </select>
                     </div>
 
                     <div class="col-lg-1">
@@ -158,9 +167,15 @@
                     <input type="number" id="amount" name="amount" class="form-control" placeholder="Số lượng" required="" data-parsley-min="1">
                 </div>
 
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-6 custom-validate-select">
                     <label for="use">Cách dùng</label>
-                    <input type="text" id="use" name="use" name="use" class="form-control" required placeholder="Chỉ định cách dùng cho bệnh nhân">
+                    <select class="form-control select2-tag" name="use" required="">
+                        <option value="">Chọn hoặc thêm cách dùng</option>
+                        <option value="Sáng 1 viên">Sáng 1 viên</option>
+                        <option value="Trưa 1 viên">Trưa 1 viên</option>
+                        <option value="Tối 1 viên">Tối 1 viên</option>
+                        <option value="Sáng tối mỗi buổi 1 viên">Sáng tối mỗi buổi 1 viên</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-1">

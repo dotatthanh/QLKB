@@ -16,12 +16,12 @@ class TypeController extends Controller
      */
     public function index(Request $request)
     {
-        $types = Type::paginate(10);
+        $types = Type::query();
 
         if ($request->search) {
-            $types = Type::where('name', 'like', '%'.$request->search.'%')->paginate(10);
-            $types->appends(['search' => $request->search]);
+            $types = $types->where('name', 'like', '%'.$request->search.'%');
         }
+        $types = $types->orderBy('name')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'types' => $types

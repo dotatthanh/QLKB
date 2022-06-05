@@ -21,14 +21,14 @@ class HealthCertificationController extends Controller
      */
     public function index(Request $request)
     {
-        $health_certifications = HealthCertification::paginate(10);
+        $health_certifications = HealthCertification::query();
 
         if ($request->search) {
-            $health_certifications = HealthCertification::whereHas('patient', function (Builder $query) use ($request) {
+            $health_certifications = $health_certifications->whereHas('patient', function (Builder $query) use ($request) {
                 $query->where('name', 'like', '%'.$request->search.'%');
-            })->paginate(10);
-            $health_certifications->appends(['search' => $request->search]);
+            });
         }
+        $health_certifications = $health_certifications->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'health_certifications' => $health_certifications
@@ -76,6 +76,10 @@ class HealthCertificationController extends Controller
 
         try {
             DB::beginTransaction();
+
+            if ($request->date == date('d-m-Y') && $request->time < date('H:i')) {
+                return redirect()->back()->with('alert-error','Thêm giấy khám bệnh thất bại! Hãy chọn thời gian khám sau giờ hiện tại!');
+            }
 
             $create = HealthCertification::create([
                 'code' => '',

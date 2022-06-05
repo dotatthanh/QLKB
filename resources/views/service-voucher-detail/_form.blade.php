@@ -84,7 +84,7 @@
 
         <input type="number" name="service_voucher_id" hidden value="{{ $service_voucher->id }}">
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="date">Ngày khám <span class="text-danger">*</span></label>
             <div class="docs-datepicker">
                 <div class="input-group">
@@ -98,7 +98,7 @@
                 <div class="docs-datepicker-container"></div>
             </div>
             {!! $errors->first('date', '<span class="error">:message</span>') !!}
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="result">Kết quả <span class="text-danger">*</span></label>

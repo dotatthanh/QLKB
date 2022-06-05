@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') In phiếu dịch vụ @endsection
+@section('title') In giấy hẹn khám bệnh @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">In phiếu dịch vụ</h4>
+                            <h4 class="mb-0 font-size-18">In giấy hẹn khám bệnh</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('service_vouchers.index') }}" title="Quản lý phiếu dịch vụ" data-toggle="tooltip" data-placement="top">Quản lý phiếu dịch vụ</a></li>
-                                    <li class="breadcrumb-item active">In phiếu dịch vụ</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('appointment_papers.index') }}" title="Quản lý giấy hẹn khám bệnh" data-toggle="tooltip" data-placement="top">Quản lý giấy hẹn khám bệnh</a></li>
+                                    <li class="breadcrumb-item active">In giấy hẹn khám bệnh</li>
                                 </ol>
                             </div>
 
@@ -31,14 +31,15 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Thông tin khám</h4>
+                                <h4 class="card-title">Thông tin hẹn khám bệnh</h4>
+                                
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <label>Mã phiếu dịch vụ :</label>
+                                        <label>Tiêu đề :</label>
                                     </div>
 
                                     <div class="col-sm-10">
-                                        <label>{{ $data_edit->code }}</label>
+                                        <label>{{ $data_edit->title }}</label>
                                     </div>
 
                                     <div class="col-sm-2">
@@ -46,15 +47,15 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label class="font-weight-bold">{{ $data_edit->patient->name }}</label>
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->patient->name }}</label>
                                     </div>
 
                                     <div class="col-sm-2">
-                                        <label>Dịch vụ khám :</label>
+                                        <label>Tên phòng khám :</label>
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label class="font-weight-bold">{{ $data_edit->medicalService->name }}</label>
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->consultingRoom->name }}</label>
                                     </div>
 
                                     <div class="col-sm-2">
@@ -62,82 +63,18 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label class="font-weight-bold">{{ $data_edit->user->name }}</label>
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->user->name }}</label>
                                     </div>
 
                                     <div class="col-sm-2">
-                                        <label>Ngày khám :</label>
+                                        <label>Ngày hẹn khám bệnh :</label>
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label class="font-weight-bold">{{ date("d-m-Y", strtotime($data_edit->start_date)) }}</label>
-                                    </div>
-
-                                    {{-- <div class="col-sm-2">
-                                        <label>Ngày kết thúc :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold">{{ date("d-m-Y", strtotime($data_edit->end_date)) }}</label>
-                                    </div> --}}
-
-                                    <div class="col-sm-2">
-                                        <label>Trạng thái :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        @if ($data_edit->status)
-                                            <label class="text-success">Đã khám</label>
-                                        @else
-                                            <label class="text-warning">Chưa khám</label>
-                                        @endif
-                                    </div>
-
-                                    <div class="col-sm-2">
-                                        <label>Giá :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label class="text-danger font-weight-bold">{{ number_format($data_edit->total_money, 0, ',', '.') }} VNĐ</label>
-                                    </div>
-
-                                    <div class="col-sm-2">
-                                        <label>Thanh toán :</label>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        @if ($data_edit->payment_status == 1)
-                                            <label class="text-success">Đã thanh toán</label>
-                                        @elseif ($data_edit->payment_status == 2)
-                                            <label class="text-success">Đã hoàn tiền</label>
-                                        @else
-                                            <label class="text-warning">Chưa thanh toán</label>
-                                        @endif
+                                        <label class="font-weight-bold">{{ date("d-m-Y", strtotime($data_edit->date)) }}</label>
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
-                        @if ($data_edit->serviceVoucherDetails->count())      
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Kết quả</h4>
-
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            @foreach ($data_edit->serviceVoucherDetails as $service_voucher_detail)
-                                                {!! $service_voucher_detail->result !!}
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        @endif
-
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="{{ route('service_vouchers.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
                             </div>
                         </div>
 

@@ -16,14 +16,14 @@ class CashierPrescriptionController extends Controller
      */
     public function index(Request $request)
     {
-        $prescriptions = Prescription::paginate(10);
+        $prescriptions = Prescription::query();
 
         if ($request->search) {
-            $prescriptions = Prescription::whereHas('patient', function (Builder $query) use ($request) {
+            $prescriptions = $prescriptions->whereHas('patient', function (Builder $query) use ($request) {
                 $query->where('name', 'like', '%'.$request->search.'%');
-            })->paginate(10);
-            $prescriptions->appends(['search' => $request->search]);
+            });
         }
+        $prescriptions = $prescriptions->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'prescriptions' => $prescriptions

@@ -14,6 +14,9 @@ $(document).ready(function() {
         	$('select').select2({
         		width: '100%',
         	});
+            $(".select2-tag").select2({
+                tags: true
+            })
         },
         hide: function(e) {
             confirm("Are you sure you want to delete this element?") && $(this).slideUp(e)

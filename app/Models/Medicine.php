@@ -16,6 +16,7 @@ class Medicine extends Model
     	'price',
     	'type_id',
     	'unit',
+        'amount',
     ];
 
     public function type()

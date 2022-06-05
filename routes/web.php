@@ -22,6 +22,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CashierPrescriptionController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\AppointmentPaperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,18 +61,14 @@ Route::middleware(['guest_website'])->group(function () {
 	Route::post('/dang-ky', [WebController::class, 'postRegister'])->name('web.post-register');
 });
 
-
-
-
-
-
-
 // Admin
 Route::prefix('admin')->group(function () {
 	Route::get('/', function () {
 		return redirect()->route('login');
 	});
 	Route::middleware(['auth'])->group(function () {
+		Route::resource('appointment_papers', AppointmentPaperController::class);
+		Route::get('/appointment_papers/print/{appointment_paper}', [AppointmentPaperController::class, 'print'])->name('appointment_papers.print');
 		Route::resource('bookings', BookingController::class);
 		Route::post('/bookings/approve-booking/{id}', [BookingController::class, 'approveBooking'])->name('bookings.approve-booking');
 		Route::post('/bookings/cancel-appointment/{id}', [BookingController::class, 'cancelAppointment'])->name('bookings.cancel-appointment');

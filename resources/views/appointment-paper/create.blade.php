@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thêm đơn thuốc @endsection
+@section('title') Thêm giấy hẹn khám bệnh @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Thêm đơn thuốc</h4>
+                            <h4 class="mb-0 font-size-18">Thêm giấy hẹn khám bệnh</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('prescriptions.index') }}" title="Quản lý đơn thuốc" data-toggle="tooltip" data-placement="top">Quản lý đơn thuốc</a></li>
-                                    <li class="breadcrumb-item active">Thêm đơn thuốc</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('appointment_papers.index') }}" title="Quản lý giấy hẹn khám bệnh" data-toggle="tooltip" data-placement="top">Quản lý giấy hẹn khám bệnh</a></li>
+                                    <li class="breadcrumb-item active">Thêm giấy hẹn khám bệnh</li>
                                 </ol>
                             </div>
 
@@ -28,8 +28,8 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <form class="repeater custom-validation" method="POST" action="{{ route('prescriptions.store') }}" enctype="multipart/form-data">
-                            @include('prescription._form', ['health_certification_id' => $request->health_certification_id])
+                        <form method="POST" action="{{ route('appointment_papers.store') }}" enctype="multipart/form-data">
+                            @include('appointment-paper._form', ['routeType' => 'create'])
                         </form>
 
                     </div>
@@ -74,58 +74,11 @@
     <script src="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.js') }}"></script>
     <!-- form advanced init -->
     <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
-
-    <!-- form repeater js -->
-    <script src="{{ asset('libs\jquery.repeater\jquery.repeater.min.js') }}"></script>
-
-    <script src="{{ asset('js\pages\form-repeater.int.js') }}"></script>
-
-    <script src="{{ asset('libs\parsleyjs\parsley.min.js') }}"></script>
-
-    <script src="{{ asset('js\pages\form-validation.init.js') }}"></script>
-
     <script type="text/javascript">
+        let date = new Date();
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
-        });
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function getInsuranceCard(id) {
-            if (id){
-                $.ajax({
-                    url: "/admin/health_insurance_cards/"+id+"/get-insurance-card",
-                    type: "POST",
-                    success: function (respon) {
-                        if (respon) {
-                            $(`#check_insurance_card`).prop('checked', true);
-                            $(`#is_health_insurance_card`).prop('checked', true);
-                            $(`#total_money`).val(0).prop('readonly', true);
-                        }
-                        else {
-                            $(`#check_insurance_card`).prop('checked', false);
-                            $(`#is_health_insurance_card`).prop('checked', false);
-                            $(`#total_money`).prop('readonly', false);
-                        }
-                    },
-                    errors: function () {
-                        alert('Lỗi server!!!');
-                    }
-                });
-            }
-            else {
-                $(`#check_insurance_card`).prop('checked', false);
-                $(`#is_health_insurance_card`).prop('checked', false);
-                $(`#total_money`).prop('readonly', false);
-            }
-        }
-
-        $(".select2-tag").select2({
-            tags: true
+            startDate: new Date(date),
         });
     </script>
 @endpush
@@ -138,11 +91,4 @@
     <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
     <!-- select2 css -->
     <link href="{{ asset('libs\select2\css\select2.min.css') }}" rel="stylesheet" type="text/css">
-
-    <style type="text/css">
-        .custom-validate-select .filled{
-            position: absolute;
-            top: 65px;
-        }
-    </style>
 @endpush

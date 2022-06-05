@@ -197,10 +197,14 @@ class WebController extends Controller
     {
         try {
             DB::beginTransaction();
-            
+
             $user = auth()->guard('web')->user();
             $patient_id = $user ? $user->id : NULL;
 
+            if ($request->date == date('d-m-Y') && $request->time < date('H:i')) {
+                return redirect()->back()->with('alert-error','Đặt lịch khám thất bại! Hãy chọn thời gian khám sau giờ hiện tại!');
+            }
+            
             Booking::create([
                 'status' => 0,
                 'patient_id' => $patient_id,

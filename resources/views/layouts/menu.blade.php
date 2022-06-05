@@ -58,6 +58,15 @@
                 </li>
                 @endcan
 
+                @can('Xem danh sách giấy hẹn tái khám')
+                <li>
+                    <a href="{{ route('appointment_papers.index') }}" class=" waves-effect">
+                        <i class="bx bx-calendar"></i>
+                        <span>Giấy hẹn tái khám</span>
+                    </a>
+                </li>
+                @endcan
+
                 @can('Xem danh sách phòng khám')
                 <li>
                     <a href="{{ route('consulting_rooms.index') }}" class=" waves-effect">

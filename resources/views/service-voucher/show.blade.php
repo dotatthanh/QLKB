@@ -125,33 +125,9 @@
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <label>Chi tiết khám :</label>
-                                        </div>
-
-                                        <div class="col-sm-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-centered table-nowrap">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th class="text-center" width="70px">STT</th>
-                                                            <th>Ngày khám</th>
-                                                            <th>Kết quả</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @php ($stt = 1)
-                                                        @foreach ($data_edit->serviceVoucherDetails as $service_voucher_detail)
-                                                            <tr>
-                                                                <td class="text-center">{{ $stt++ }}</td>
-                                                                <td>{{ date("d-m-Y", strtotime($service_voucher_detail->date)) }}</td>
-                                                                <td>
-                                                                    {!! $service_voucher_detail->result !!}
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            @foreach ($data_edit->serviceVoucherDetails as $service_voucher_detail)
+                                                {!! $service_voucher_detail->result !!}
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

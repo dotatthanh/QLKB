@@ -26,6 +26,7 @@ class StoreMedicineRequest extends FormRequest
         return [
             'name' => 'required|max:255', 
             'price' => 'required|numeric|min:0',
+            'amount' => 'required|numeric|min:0',
             'type_id' => 'required',
             'unit' => 'required|max:50',
         ];
@@ -38,9 +39,13 @@ class StoreMedicineRequest extends FormRequest
             'name.max' => 'Họ và tên không được dài quá :max ký tự.', 
             'price.required' => 'Giá là trường bắt buộc.',
             'price.min' => 'Giá là không được nhỏ hơn :min đồng.',
+            'price.numeric' => 'Giá là định dạng số.',
             'type_id.required' => 'Loại thuốc là trường bắt buộc.',
             'unit.required' => 'Đơn vị tính là trường bắt buộc.',
             'unit.max' => 'Đơn vị tính không được dài quá :max ký tự.',
+            'amount.required' => 'Số lượng là trường bắt buộc.',
+            'amount.min' => 'Số lượng là không được nhỏ hơn :min đồng.',
+            'amount.numeric' => 'Số lượng là định dạng số.',
         ];
     }
 }

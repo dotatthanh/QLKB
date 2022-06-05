@@ -18,12 +18,12 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $patients = Patient::paginate(10);
+        $patients = Patient::query();
 
         if ($request->search) {
-            $patients = Patient::where('name', 'like', '%'.$request->search.'%')->paginate(10);
-            $patients->appends(['search' => $request->search]);
+            $patients = $patients->where('name', 'like', '%'.$request->search.'%');
         }
+        $patients = $patients->orderBy('name')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'patients' => $patients

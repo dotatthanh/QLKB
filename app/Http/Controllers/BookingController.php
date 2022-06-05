@@ -15,12 +15,12 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        $bookings = Booking::paginate(10);
+        $bookings = Booking::query();
 
         if ($request->search) {
-            $bookings = Booking::where('phone', 'like', '%'.$request->search.'%')->paginate(10);
-            $bookings->appends(['search' => $request->search]);
+            $bookings = $bookings->where('phone', 'like', '%'.$request->search.'%');
         }
+        $bookings = $bookings->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'bookings' => $bookings

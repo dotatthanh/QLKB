@@ -17,12 +17,12 @@ class MedicineController extends Controller
      */
     public function index(Request $request)
     {
-        $medicines = Medicine::paginate(10);
+        $medicines = Medicine::query();
 
         if ($request->search) {
-            $medicines = Medicine::where('name', 'like', '%'.$request->search.'%')->paginate(10);
-            $medicines->appends(['search' => $request->search]);
+            $medicines = $medicines->where('name', 'like', '%'.$request->search.'%');
         }
+        $medicines = $medicines->orderBy('name')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'medicines' => $medicines
@@ -65,6 +65,7 @@ class MedicineController extends Controller
                 'type_id' => $request->type_id,
                 'unit' => $request->unit,
                 'description' => $request->description,
+                'amount' => $request->amount,
             ]);
 
             $create->update([
@@ -126,6 +127,7 @@ class MedicineController extends Controller
                 'type_id' => $request->type_id,
                 'unit' => $request->unit,
                 'description' => $request->description,
+                'amount' => $request->amount,
             ]);
             
             DB::commit();

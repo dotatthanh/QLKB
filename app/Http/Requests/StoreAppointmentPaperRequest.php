@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreServiceVoucherDetailRequest extends FormRequest
+class StoreAppointmentPaperRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class StoreServiceVoucherDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'result' => 'required',
-            // 'date' => 'required|date',
+            'title' => 'required|max:255',
+            'date' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'result.required' => 'Kết quả là trường bắt buộc.',
-            // 'date.required' => 'Ngày khám là trường bắt buộc.',
-            // 'date.date' => 'Ngày khám không đúng định dạng.',
+            'date.required' => 'Ngày hẹn khám bệnh là trường bắt buộc.',
+            'title.required' => 'Tiêu đề là trường bắt buộc.',
+            'title.max' => 'Tiêu đề không được dài quá :max ký tự.',
         ];
     }
 }

@@ -22,14 +22,14 @@ class PrescriptionController extends Controller
      */
     public function index(Request $request)
     {
-        $prescriptions = Prescription::paginate(10);
+        $prescriptions = Prescription::query();
 
         if ($request->search) {
-            $prescriptions = Prescription::whereHas('patient', function (Builder $query) use ($request) {
+            $prescriptions = $prescriptions->whereHas('patient', function (Builder $query) use ($request) {
                 $query->where('name', 'like', '%'.$request->search.'%');
-            })->paginate(10);
-            $prescriptions->appends(['search' => $request->search]);
+            });
         }
+        $prescriptions = $prescriptions->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'prescriptions' => $prescriptions
@@ -88,18 +88,24 @@ class PrescriptionController extends Controller
             foreach($request->prescription_details as $prescription_detail) {
                 $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
                 
-                $total = $medicine->price * $prescription_detail['amount'];
-                $total_money += $total;
+                if ($prescription_detail['amount'] > $medicine->amount) {
+                    return redirect()->back()->with('alert-error','Thêm đơn thuốc thất bại! Thuốc '.$medicine->name.' chỉ còn lại '.$medicine->amount.' '.$medicine->unit);
+                }
+                else {
+                    $total = $medicine->price * $prescription_detail['amount'];
+                    $total_money += $total;
 
-                PrescriptionDetail::create([
-                    'prescription_id' => $create_precription->id,
-                    'medicine_id' => $prescription_detail['medicine_id'],
-                    'amount' => $prescription_detail['amount'],
-                    'price' => $medicine->price,
-                    'total_money' => $total,
-                    'use' => $prescription_detail['use'],
-                ]);
+                    PrescriptionDetail::create([
+                        'prescription_id' => $create_precription->id,
+                        'medicine_id' => $prescription_detail['medicine_id'],
+                        'amount' => $prescription_detail['amount'],
+                        'price' => $medicine->price,
+                        'total_money' => $total,
+                        'use' => $prescription_detail['use'],
+                    ]);
 
+                    $medicine->update(['amount' => $medicine->amount - $prescription_detail['amount']]);
+                }
             }
 
             $create_precription->update([
@@ -170,25 +176,35 @@ class PrescriptionController extends Controller
 
         try {
             DB::beginTransaction();
-
+            // update SL thuốc trước khi xoá
+            foreach($prescription->prescriptionDetails as $prescription_detail) {
+                $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
+                $medicine->update(['amount' => $medicine->amount + $prescription_detail['amount']]);
+            }
             $prescription->prescriptionDetails()->delete();
 
             $total_money = 0;
             foreach($request->prescription_details as $prescription_detail) {
                 $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
                 
-                $total = $medicine->price * $prescription_detail['amount'];
-                $total_money += $total;
+                if ($prescription_detail['amount'] > $medicine->amount) {
+                    return redirect()->back()->with('alert-error','Thêm đơn thuốc thất bại! Thuốc '.$medicine->name.' chỉ còn lại '.$medicine->amount.' '.$medicine->unit);
+                }
+                else {
+                    $total = $medicine->price * $prescription_detail['amount'];
+                    $total_money += $total;
 
-                PrescriptionDetail::create([
-                    'prescription_id' => $prescription->id,
-                    'medicine_id' => $prescription_detail['medicine_id'],
-                    'amount' => $prescription_detail['amount'],
-                    'price' => $medicine->price,
-                    'total_money' => $total,
-                    'use' => $prescription_detail['use'],
-                ]);
+                    PrescriptionDetail::create([
+                        'prescription_id' => $prescription->id,
+                        'medicine_id' => $prescription_detail['medicine_id'],
+                        'amount' => $prescription_detail['amount'],
+                        'price' => $medicine->price,
+                        'total_money' => $total,
+                        'use' => $prescription_detail['use'],
+                    ]);
 
+                    $medicine->update(['amount' => $medicine->amount - $prescription_detail['amount']]);
+                }
             }
 
             $prescription->update([
@@ -219,6 +235,10 @@ class PrescriptionController extends Controller
 
             Prescription::destroy($prescription->id);
 
+            foreach($prescription->prescriptionDetails as $prescription_detail) {
+                $medicine = Medicine::findOrFail($prescription_detail['medicine_id']);
+                $medicine->update(['amount' => $medicine->amount + $prescription_detail['amount']]);
+            }
             $prescription->prescriptionDetails()->delete();
             
             DB::commit();

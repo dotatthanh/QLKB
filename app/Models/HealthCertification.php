@@ -51,4 +51,9 @@ class HealthCertification extends Model
     {
         return $this->hasMany(ServiceVoucher::class);
     }
+
+    public function appointmentPapers()
+    {
+        return $this->hasMany(AppointmentPaper::class);
+    }
 }

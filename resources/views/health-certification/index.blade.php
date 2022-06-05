@@ -161,6 +161,14 @@
                                                                         <a href="{{ route('prescriptions.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Kê đơn thuốc"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>
                                                                     @endcan
+
+                                                                    @can('Tạo giấy hẹn khám bệnh')
+                                                                    @if ($health_certification->appointmentPapers->count() == 0)
+                                                                    <li class="list-inline-item px">
+                                                                        <a href="{{ route('appointment_papers.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Tạo giấy hẹn khám bệnh"><i class="mdi mdi-plus mr-1 text-success"></i></a>
+                                                                    </li>
+                                                                    @endif
+                                                                    @endcan
                                                                 @endif
 
                                                             @endif

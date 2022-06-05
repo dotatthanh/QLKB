@@ -184,5 +184,20 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($view_booking);
         $admin->givePermissionTo($approve_booking);
         $admin->givePermissionTo($cancel_appointment_booking);
+
+
+        $view_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'Xem danh sách giấy hẹn khám bệnh']);
+        $view_detail_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'Xem thông tin giấy hẹn khám bệnh']);
+        $create_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'Thêm giấy hẹn khám bệnh']);
+        $edit_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'Chỉnh sửa giấy hẹn khám bệnh']);
+        $delete_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'Xóa giấy hẹn khám bệnh']);
+        $print_appointment_paper = Permission::create(['guard_name' => 'admin','name' => 'In giấy hẹn khám bệnh']);
+
+        $admin->givePermissionTo($view_appointment_paper);
+        $admin->givePermissionTo($view_detail_appointment_paper);
+        $admin->givePermissionTo($create_appointment_paper);
+        $admin->givePermissionTo($edit_appointment_paper);
+        $admin->givePermissionTo($delete_appointment_paper);
+        $admin->givePermissionTo($print_appointment_paper);
     }
 }

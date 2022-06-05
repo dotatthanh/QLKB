@@ -16,14 +16,14 @@ class CashierHealthCertificationController extends Controller
      */
     public function index(Request $request)
     {
-        $health_certifications = HealthCertification::paginate(10);
+        $health_certifications = HealthCertification::query();
 
         if ($request->search) {
-            $health_certifications = HealthCertification::whereHas('patient', function (Builder $query) use ($request) {
+            $health_certifications = $health_certifications->whereHas('patient', function (Builder $query) use ($request) {
                 $query->where('name', 'like', '%'.$request->search.'%');
-            })->paginate(10);
-            $health_certifications->appends(['search' => $request->search]);
+            });
         }
+        $health_certifications = $health_certifications->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'health_certifications' => $health_certifications

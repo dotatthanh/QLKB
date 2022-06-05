@@ -136,9 +136,11 @@
                                                                     @endcan
 
                                                                     @can('Kết luận khám phiếu dịch vụ')
+                                                                    @if ($service_voucher->serviceVoucherDetails->count() == 0)
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('service_voucher_details.create', ['service_voucher_id' =>  $service_voucher->id]) }}" data-toggle="tooltip" data-placement="top" title="Kết luận khám"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>
+                                                                    @endif
                                                                     @endcan
                                                                 @endif
 

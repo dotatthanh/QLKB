@@ -16,12 +16,12 @@ class ConsultingRoomController extends Controller
      */
     public function index(Request $request)
     {
-        $consulting_rooms = ConsultingRoom::paginate(10);
+        $consulting_rooms = ConsultingRoom::query();
 
         if ($request->search) {
-            $consulting_rooms = ConsultingRoom::where('name', 'like', '%'.$request->search.'%')->paginate(10);
-            $consulting_rooms->appends(['search' => $request->search]);
+            $consulting_rooms = $consulting_rooms->where('name', 'like', '%'.$request->search.'%');
         }
+        $consulting_rooms = $consulting_rooms->orderBy('name')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'consulting_rooms' => $consulting_rooms

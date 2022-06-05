@@ -63,6 +63,7 @@
                                                 <th>Tên thuốc</th>
                                                 <th>Loại thuốc</th>
                                                 <th>Giá (VNĐ)</th>
+                                                <th>Số lượng</th>
                                                 <th>Đơn vị tính</th>
                                                 <th>Mô tả</th>
                                                 <th class="text-center">Hành động</th>
@@ -79,6 +80,7 @@
                                                     </td>
                                                     <td>{{ $medicine->type->name }}</td>
                                                     <td>{{ number_format($medicine->price, 0, ',', '.') }}</td>
+                                                    <td>{{ $medicine->amount }}</td>
                                                     <td>{{ $medicine->unit }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#description{{ $medicine->id }}">Xem</button>

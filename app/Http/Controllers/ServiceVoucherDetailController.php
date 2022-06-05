@@ -50,21 +50,21 @@ class ServiceVoucherDetailController extends Controller
             $check_medical_examination_day = ServiceVoucherDetail::where('service_voucher_id', $request->service_voucher_id)->where('date', date("Y-m-d", strtotime($request->date)))->count();
 
             // check ngày đã kết luận chưa
-            if ($check_medical_examination_day) {
-                return redirect()->back()->with('alert-error', 'Cập nhật chi tiết phiếu dịch vụ thất bại! Ngày '.$request->date.' đã có kết luận khám!');
-            }
+            // if ($check_medical_examination_day) {
+            //     return redirect()->back()->with('alert-error', 'Cập nhật chi tiết phiếu dịch vụ thất bại! Ngày '.$request->date.' đã có kết luận khám!');
+            // }
 
             // Check ngày khám theo ngày bắt đầu và kết thúc
-            if (date("Y-m-d", strtotime($request->date)) >= $service_voucher->start_date && date("Y-m-d", strtotime($request->date)) <= $service_voucher->end_date) {
+            // if (date("Y-m-d", strtotime($request->date)) >= $service_voucher->start_date && date("Y-m-d", strtotime($request->date)) <= $service_voucher->end_date) {
                 $create = ServiceVoucherDetail::create([
-                    'date' => date("Y-m-d", strtotime($request->date)),
+                    'date' => date("Y-m-d"),
                     'result' => $request->result,
                     'service_voucher_id' => $request->service_voucher_id,
                 ]);
-            }
-            else {
-                return redirect()->back()->with('alert-error','Thêm chi tiết phiếu dịch vụ thất bại! Ngày khám không hợp lệ!');
-            }
+            // }
+            // else {
+            //     return redirect()->back()->with('alert-error','Thêm chi tiết phiếu dịch vụ thất bại! Ngày khám không hợp lệ!');
+            // }
             
             DB::commit();
             return redirect()->route('service_vouchers.index')->with('alert-success','Thêm chi tiết phiếu dịch vụ thành công!');

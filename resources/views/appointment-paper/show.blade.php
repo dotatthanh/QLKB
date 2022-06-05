@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thêm đơn thuốc @endsection
+@section('title') Thông tin giấy hẹn khám bệnh @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Thêm đơn thuốc</h4>
+                            <h4 class="mb-0 font-size-18">Thông tin giấy hẹn khám bệnh</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('prescriptions.index') }}" title="Quản lý đơn thuốc" data-toggle="tooltip" data-placement="top">Quản lý đơn thuốc</a></li>
-                                    <li class="breadcrumb-item active">Thêm đơn thuốc</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('appointment_papers.index') }}" title="Quản lý giấy hẹn khám bệnh" data-toggle="tooltip" data-placement="top">Quản lý giấy hẹn khám bệnh</a></li>
+                                    <li class="breadcrumb-item active">Thông tin giấy hẹn khám bệnh</li>
                                 </ol>
                             </div>
 
@@ -28,9 +28,57 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <form class="repeater custom-validation" method="POST" action="{{ route('prescriptions.store') }}" enctype="multipart/form-data">
-                            @include('prescription._form', ['health_certification_id' => $request->health_certification_id])
-                        </form>
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Thông tin hẹn khám bệnh</h4>
+                                
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label>Tiêu đề :</label>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <label>{{ $data_edit->title }}</label>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <label>Tên bệnh nhân :</label>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->patient->name }}</label>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <label>Tên phòng khám :</label>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->consultingRoom->name }}</label>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <label>Tên bác sĩ :</label>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label class="font-weight-bold">{{ $data_edit->healthCertification->user->name }}</label>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <label>Ngày hẹn khám bệnh :</label>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label class="font-weight-bold">{{ date("d-m-Y", strtotime($data_edit->date)) }}</label>
+                                    </div>
+
+                                </div>
+
+                                <a href="{{ route('appointment_papers.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -74,59 +122,17 @@
     <script src="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.js') }}"></script>
     <!-- form advanced init -->
     <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
-
-    <!-- form repeater js -->
-    <script src="{{ asset('libs\jquery.repeater\jquery.repeater.min.js') }}"></script>
-
-    <script src="{{ asset('js\pages\form-repeater.int.js') }}"></script>
-
-    <script src="{{ asset('libs\parsleyjs\parsley.min.js') }}"></script>
-
-    <script src="{{ asset('js\pages\form-validation.init.js') }}"></script>
-
     <script type="text/javascript">
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
         });
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function getInsuranceCard(id) {
-            if (id){
-                $.ajax({
-                    url: "/admin/health_insurance_cards/"+id+"/get-insurance-card",
-                    type: "POST",
-                    success: function (respon) {
-                        if (respon) {
-                            $(`#check_insurance_card`).prop('checked', true);
-                            $(`#is_health_insurance_card`).prop('checked', true);
-                            $(`#total_money`).val(0).prop('readonly', true);
-                        }
-                        else {
-                            $(`#check_insurance_card`).prop('checked', false);
-                            $(`#is_health_insurance_card`).prop('checked', false);
-                            $(`#total_money`).prop('readonly', false);
-                        }
-                    },
-                    errors: function () {
-                        alert('Lỗi server!!!');
-                    }
-                });
-            }
-            else {
-                $(`#check_insurance_card`).prop('checked', false);
-                $(`#is_health_insurance_card`).prop('checked', false);
-                $(`#total_money`).prop('readonly', false);
-            }
-        }
-
-        $(".select2-tag").select2({
-            tags: true
-        });
+        // $(document).ready(function() {
+        //     $(`#print`).click(function() {
+        //         $(`#print`).addClass('d-block');
+        //         window.print();
+        //     });
+        // });
     </script>
 @endpush
 
@@ -138,11 +144,4 @@
     <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
     <!-- select2 css -->
     <link href="{{ asset('libs\select2\css\select2.min.css') }}" rel="stylesheet" type="text/css">
-
-    <style type="text/css">
-        .custom-validate-select .filled{
-            position: absolute;
-            top: 65px;
-        }
-    </style>
 @endpush

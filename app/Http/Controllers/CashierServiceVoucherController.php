@@ -16,14 +16,14 @@ class CashierServiceVoucherController extends Controller
      */
     public function index(Request $request)
     {
-        $service_vouchers = ServiceVoucher::paginate(10);
+        $service_vouchers = ServiceVoucher::query();
 
         if ($request->search) {
-            $service_vouchers = ServiceVoucher::whereHas('patient', function (Builder $query) use ($request) {
+            $service_vouchers = $service_vouchers->whereHas('patient', function (Builder $query) use ($request) {
                 $query->where('name', 'like', '%'.$request->search.'%');
-            })->paginate(10);
-            $service_vouchers->appends(['search' => $request->search]);
+            });
         }
+        $service_vouchers = $service_vouchers->orderBy('id', 'desc')->paginate(10)->appends(['search' => $request->search]);
 
         $data = [
             'service_vouchers' => $service_vouchers
